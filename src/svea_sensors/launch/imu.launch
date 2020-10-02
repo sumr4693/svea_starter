@@ -1,0 +1,23 @@
+<!--
+    IMU only
+-->
+
+
+<launch>
+  <include file="$(find svea_sensors)/launch/transforms.launch" />
+  <node ns="imu" name="imu_node" pkg="svea_sensors" type="bno055_i2c_node" respawn="true" respawn_delay="2" output="screen">
+    <param name="device" type="string" value="/dev/i2c-1"/>
+    <param name="address" type="int" value="40"/> <!-- 0x28 == 40 is the default for BNO055 -->
+    <param name="frame_id" type="string" value="imu"/>
+  </node>
+    
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true">
+    <rosparam command="load" file="$(find svea_sensors)/params/robot_localization/default_ekf.yaml" />
+    <param name="imu0" value="/imu/data"/>
+    <!--  Placeholder for output topic remapping
+    <remap from="odometry/filtered" to=""/>
+    <remap from="accel/filtered" to=""/>
+    -->
+  </node>
+  
+</launch>

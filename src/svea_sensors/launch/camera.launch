@@ -1,0 +1,35 @@
+<!--
+    Camera only launch file
+-->
+
+
+<launch>
+  <!-- IMU 
+  
+  <node pkg="tf2_ros" type="static_transform_publisher" name="imulink_broadcaster" args="0.3 0 0 0 0 0 1 base_link imu" />
+  -->
+  <!-- Zed cam -->
+  <arg name="svo_file"             default="" /> <!-- <arg name="svo_file" default="path/to/svo/file.svo"> -->
+  <arg name="stream"               default="" /> <!-- <arg name="stream" default="<ip_address>:<port>"> -->
+  <arg name="node_name"            default="zed_node" />
+  <arg name="camera_model"         default="zedm" /> <!-- 'zed' or 'zedm' -->
+  <arg name="publish_urdf"         default="true" />
+
+  <group ns="zed">
+      <include file="$(find svea_sensors)/launch/zed_camera.launch">
+          <arg name="svo_file"            value="$(arg svo_file)" />
+          <arg name="stream"              value="$(arg stream)" />
+          <arg name="node_name"           value="$(arg node_name)" />
+          <arg name="camera_model"        value="$(arg camera_model)" />
+          <arg name="publish_urdf"        value="$(arg publish_urdf)" />
+          <arg name="spatial_memory"      value="false" />            
+      </include>
+  </group>
+  
+  <!-- Robot localization-->
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true">
+    <rosparam command="load" file="$(find svea_sensors)/params/default_params.yaml" />
+    <param name="odom0" value="/zed/zed_node/odom"/>
+
+  </node>
+</launch>

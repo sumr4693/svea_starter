@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+    Launch default odometry and 2d mrpt icp slam
+-->
+
+<launch>
+  <!-- <param name="use_sim_time" value="true"/> -->
+  <!-- Start default odometryand SLAM -->
+  <include file="$(find svea_sensors)/launch/slam.launch" />
+  
+  <!-- ROS bag -->
+    <node pkg="rosbag" type="record" name="record" output="screen" args="-o /home/nvidia/bagfiles/ /zed/zed_node/odom /tf /set_pose /scan /rosout /robot_pose /laser_status /imu/data /imu/mag /imu/raw/ imu/status /imu/temp /Hokyoulidar/parameter_descriptions /Hokyoulidar/parameter_updates"/>
+  
+</launch>
+

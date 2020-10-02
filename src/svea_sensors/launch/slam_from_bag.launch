@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<launch>
+  <param name="use_sim_time" value="true"/>
+  <!-- Static transforms -->
+  <include file="$(find svea_sensors)/launch/transforms.launch" />
+  
+  <arg name="camera_model"          default="zedm" /> <!-- 'zed' or 'zedm' -->
+  <param name="zed_description" textfile="$(find svea_sensors)/urdf/$(arg camera_model).urdf" />
+  <node name="zed_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+    <remap from="robot_description" to="zed_description" />
+  </node>
+  
+  <env name="ROSCONSOLE_CONFIG_FILE" value="$(find svea_sensors)/config/rosconsole.config"/>
+  <!-- ICP SLAM -->
+  <param name="ini_filename" value="$(find svea_sensors)/params/mrpt/icp_slam.ini" />
+  <node pkg="mrpt_icp_slam_2d" type="mrpt_icp_slam_2d" name="mrpt_icp_slam_2d" output="screen">
+      <param name="odom_frame_id" value="odom"/>
+      <param name="global_frame_id" value="map"/>
+      <param name="base_frame_id" value="base_link"/>
+      <!--for multiple sensors, place comma eg "r1/front_laser/scan,/beacon" -->
+      <param name="sensor_source" value="/scan"/>
+      <param name="trajectory_update_rate" value="10"/>
+      <param name="trajectory_publish_rate" value="10"/>
+  </node>
+  <!-- Robot localization-->
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true">
+    <rosparam command="load" file="$(find svea_sensors)/params/robot_localization/default_ekf.yaml" />
+    <param name="imu0" value="/imu/data"/>
+    <param name="odom0" value="/zed/zed_node/odom"/>
+    <!--  Placeholder for output topic remapping
+    <remap from="odometry/filtered" to=""/>
+    <remap from="accel/filtered" to=""/>
+    -->
+  </node>
+  <arg name="file_name"       default="" />
+  <node pkg="rosbag" type="play" name="player" output="screen" args="--clock /home/nvidia/bagfiles/$(arg file_name)"/>
+</launch>

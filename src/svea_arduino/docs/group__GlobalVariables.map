@@ -1,0 +1,10 @@
+<map id="Global Variables" name="Global Variables">
+<area shape="rect" id="node1" href="$group__RecieverPwmPins.html" title="Pins used connected\l the reciever to the\l arduino" alt="" coords="184,5,328,61"/>
+<area shape="rect" id="node2" href="$group__ROSSetup.html" title="Variables used by ROS" alt="" coords="177,85,335,112"/>
+<area shape="rect" id="node4" href="$group__PwmOutputChannels.html" title="Output channels on\l the PWM board" alt="" coords="189,137,323,178"/>
+<area shape="rect" id="node5" href="$group__MsgBitPositions.html" title="Bit positions used\l for the trans_diff\l_ctrl field in messages" alt="" coords="179,201,333,257"/>
+<area shape="rect" id="node6" href="$group__PwmBuffers.html" title="Reciever PWM Buffer\l variables" alt="" coords="181,281,331,322"/>
+<area shape="rect" id="node7" href="$group__PwmMeasurtement.html" title="Reciever pwm duty cycle\l measurement variables" alt="" coords="171,346,341,387"/>
+<area shape="rect" id="node8" href="$group__StatusVariables.html" title="Status variables" alt="" coords="198,412,314,439"/>
+<area shape="rect" id="node9" href="$group__ActuationToOutput.html" title="Actuation value to\l output (board) pwm\l variables" alt="" coords="187,463,325,519"/>
+</map>

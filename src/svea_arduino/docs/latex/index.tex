@@ -1,0 +1,190 @@
+The package contains the arduino code for the S\+V\+EA cars and various support functions. The Arduino on the power board has three main tasks\+:
+\begin{DoxyEnumerate}
+\item Recieve messages from the T\+X2 via a rosserial node and translate those into pwm-\/signals.
+\item Read pwm-\/signals from the reciever and transfere the messages to the T\+X2.
+\item Count the toicks from the wheel encoders and send the results to the T\+X2. If the T\+X2 is not sending anything (or the remote is put into override mode by setting the switch into the forward position), the Arduino can also transmit the input from the remote directly to the pwm board without the T\+X2 having to be turned on.
+\end{DoxyEnumerate}
+
+\subsection*{Quickstart}
+
+
+\begin{DoxyEnumerate}
+\item Turn on the remote.
+\item Make sure that the L\+ED on the reciever shines with a steady green light. Run {\ttfamily roslaunch svea\+\_\+arduino basic\+\_\+remote\+\_\+reader.\+launch}. If everything is turned on, installed and setup correctly, it should now be possible to control the car via the remote. The actuation values should also be published on the {\ttfamily /lli/ctrl\+\_\+actuated} topic in R\+OS.
+\end{DoxyEnumerate}
+
+\subsection*{Messages}
+
+The package contains some custom messages. \subsubsection*{lli\+\_\+ctrl}
+
+These messages contains four fields. All of them are signed 8-\/bit integers (can contain values between 127 and -\/128). The first two fields are {\ttfamily steering} and {\ttfamily velocity}. Steering goes in a positive clockwise direction, i.\+e. -\/127 is maximum left (about 45 degrees, pi/2 radians left) and 127 is maximum right (about 45 degrees, pi/2 radians right). Velocity also goes from -\/127, full brake/reverse to 127, full speed ahead. The reverse behavior depends on the setting of the E\+SC. By default a reverse signal will first make the car brake. If a neutral (zero) signal is then sent followed by another negative signal, the car will go into reverse. Sending -\/128 to either steering or velocity will make the Arduino keep sending the last non -\/128 value to that channel.
+
+The {\ttfamily trans\+\_\+diff} control the transmision and differentials on the car. The field is treated as a series of boolean (True/\+False) values, where every bit has a sepparate meaning according to\+:
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Bit }&{\bf Usage  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Bit }&{\bf Usage  }\\\cline{1-2}
+\endhead
+0 &Transmision, 0 = low gear, 1 = high gear \\\cline{1-2}
+1 &Front differential, 0 = unlocked, 1 = locked \\\cline{1-2}
+2 &Rear differential, 0 = unlocked, 1 = locked \\\cline{1-2}
+3 &Change transmission according to bit 0 if this is set \\\cline{1-2}
+4 &Change front differential according to bit 1 if this is set \\\cline{1-2}
+5 &Change rear differential according to bit 2 if this is set \\\cline{1-2}
+\end{longtabu}
+Note\+: The bits are zero indexed. Bits 3, 4, and 5 are do not care bits and have the same role as -\/128 for steering and velocity. If these bits are set to 0, the Arduino will ignore the corresponding value. For example\+: if a message is sent with bit 0 set to 1, requesting the high gear, but bit 3 is set to 0, the transmision will remain in watever gear it was in before the message was sent. However, if bit 1 is set to 1 and bit 4 is set to 1 in the same message, the front differential will be locked, but the transmision bit will still be ignored.
+
+Messages sent from the arduino to the T\+X2 will always have the do notcare bits set to 1.
+
+The {\ttfamily control} field is used to recieving (and in the future, sending) control flags from the Arduino. According to\+:
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Bit }&{\bf Meaning  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Bit }&{\bf Meaning  }\\\cline{1-2}
+\endhead
+0 &T\+X2 detected as idle (have not sent any messages for 5 seconds) \\\cline{1-2}
+1 &Remote disconnected (No pwm signal on channel 5 from the reciever) \\\cline{1-2}
+2 &Remote in override mode \\\cline{1-2}
+\end{longtabu}
+The control field is currently only used for recieving messages and is ignored in messages sent to the Arduino.
+
+\subsubsection*{lli\+\_\+encoder}
+
+Contains the number of ticks on the right wheel and left wheel during time delta. Note that the resolution of time delta is 10 micro seconds. Time delta is currently the duration from the previous message being sent to the current message being sent. It will be changed to the duration between the last tick counted in the previous message and the last tick counted in this message, and split ointo two fields, one for the left wheel and one for the right.
+
+\subsection*{Connections}
+
+This section describeshow to conect the Arduino and everything else.
+
+\subsubsection*{Arduino to P\+WM Board}
+
+Required for control of the car. The pwm-\/board is the blue Adafruit board with a large capacitor and lots of pins for connecting servos.
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*3{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Arduino pin }&{\bf Connects to }&{\bf Notes  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Arduino pin }&{\bf Connects to }&{\bf Notes  }\\\cline{1-3}
+\endhead
+A4/\+S\+DA &S\+CA pin on pwm board &i2c buss data \\\cline{1-3}
+A5/\+S\+CL &S\+CL pin on pwm board &i2c buss clock \\\cline{1-3}
+5V &V\+CC pin on pwm board &The V\+CC pin should be connected to 5V, it does not have to be connected to the 5V pin on the ardunio. \\\cline{1-3}
+G\+ND &G\+ND pin on pwm board &The G\+ND pin should be connected to ground, it does not have to be connected to the ground pin on the ardunio. \\\cline{1-3}
+D3 &P\+WM pin 10 on the pwm board &Optional, used for adjusting the output frequency of the pwm board. \\\cline{1-3}
+\end{longtabu}
+The internal clock on the pwm boards varries with up to 10\% between boards. If the D3 pin is connnected the arduino will attempt to meassure the output frequency of the pwm board and adjust it to be close to 99 Hz. The servos work for higher frequencies, but the E\+SC will not recognize the signal if it is even slightly above 100 Hz. The auto adjustment uses external interrupt 1 (I\+N\+T1) on the arduino. The interrupt is disabled after the adjustment process is completed.
+
+\subsubsection*{P\+WM Board to other}
+
+Required for control of the car. Unless otherwise noted all three pins from the servo should be connected to the indicated channel on the P\+WM board. Note that the channels are zero indexed (goes from 0 to 15).
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*3{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}{\bf P\+WM board channel }&{\bf Connects to }&{\bf Notes  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf P\+WM board channel }&{\bf Connects to }&{\bf Notes  }\\\cline{1-3}
+\endhead
+P\+WM 15 &Steering servo &\\\cline{1-3}
+P\+WM 14 &E\+SC &If the power cable on the E\+SC is cut, the entire servo connector can be used. Otherwise only the ground and pwm pin should be connected. \\\cline{1-3}
+P\+WM 13 &Gear servo &\\\cline{1-3}
+P\+WM 12 &Front differential servo &\\\cline{1-3}
+P\+WM 11 &Rear differential servo &\\\cline{1-3}
+V+ &A power source between 5 and 6.\+5 Volts &It is also possible to connect the power through the power terminal (preffered) or any unused power pin on a channel. Due to the high currents required the 5V pin on the Arduno should not be used. \\\cline{1-3}
+\end{longtabu}
+\subsubsection*{Reciever}
+
+Required connections for using the remote. If the remote is not going to be used pin D2 and D12 have to be connected to ground. Only the pwm pin on the reciver should be connected unless otherwise noted.
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*3{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Arduino pin }&{\bf Connects to }&{\bf Notes  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}{\bf Arduino pin }&{\bf Connects to }&{\bf Notes  }\\\cline{1-3}
+\endhead
+D2 &P\+WM output 1 (Steering) on reciever &Used for detecting the rising edge of the pwm signal \\\cline{1-3}
+D8 &P\+WM output 1 (Steering) on reciever &There are 2 channel 1 pins on the receiver. Detects falling edge on channel 1. \\\cline{1-3}
+D9 &P\+WM output 2 (E\+SC) on reciever &Detects falling edge on channel 2. \\\cline{1-3}
+D10 &P\+WM output 3 (Gear) on reciever &Detects falling edge on channel 3. \\\cline{1-3}
+D11 &P\+WM output 4 (Front ) on reciever &Detects falling edge on channel 4. \\\cline{1-3}
+D12 &P\+WM output 5 (E\+SC) on reciever &Detects falling edge on channel 5. \\\cline{1-3}
+5V &Any power in pin on the reciever &The V\+CC pin should be connected to 5V, it does not have to be connected to the 5V pin on the ardunio. \\\cline{1-3}
+Gnd &Any ground pin on the reciever &The G\+ND pin should be connected to ground, it does not have to be connected to the ground pin on the ardunio. \\\cline{1-3}
+\end{longtabu}
+The D2 pin uses external interrupt 0 (I\+N\+T0) of the arduino. Pin D8 to D12 uses pin change interrupt 0 (P\+C\+I\+N\+T0) and these pins are grouped on the G\+P\+IO adress P\+O\+R\+TB.
+
+\subsection*{Setup}
+
+Howto setup all the software inorder to make things work. This section does not include the standard R\+OS procedures for installing packages. \subsubsection*{Changing the arduino device name}
+
+Required for running the default launch scripts. In the default launch files the Arduino\textquotesingle{}s device name is {\ttfamily /dev/arduino\+P\+WM}. To create this link\+:
+\begin{DoxyEnumerate}
+\item Make sure that the control Arduino is the only Arduino connected to the T\+X2 on the car
+\item When in the package base folder, run {\ttfamily sudo python gen\+\_\+arduino\+\_\+rule.\+py}.
+\item If no error messages appear the link should have been created. Check by typing {\ttfamily ls /dev/} and see if {\ttfamily /dev/arduino\+P\+WM} is listed.
+\end{DoxyEnumerate}
+
+\subsubsection*{Seting up arduino libraries}
+
+To compile and upload the firmware to the arduino some R\+OS libraries have to be created by rosserial and put in the Arduino I\+DE library folder. Custom messages requires this procedure everytime their definition is changed. First run {\ttfamily catkin\+\_\+make} and make sure that the messages are created correctly. Then run {\ttfamily bash make\+\_\+library.\+sh} from the {\ttfamily svea\+\_\+arduino} directory. (it will run {\ttfamily rm -\/r $\sim$/\+Arduino/libraries/ros\+\_\+lib/} followed by {\ttfamily rosrun rosserial\+\_\+arduino make\+\_\+libraries.\+py /home/nvidia/\+Arduino/libraries/})
+
+\subsection*{Trouble shooting}
+
+\subsubsection*{Rosserial reports that the Arduino is not found}
+
+
+\begin{DoxyEnumerate}
+\item Make sure that the Arduino is connected to the T\+X2 throught U\+SB.
+\item Type {\ttfamily ls /dev/} and check that {\ttfamily /dev/arduino\+P\+WM} is listed. If not\+: check if {\ttfamily tty\+A\+C\+M0} is listed.
+\item If {\ttfamily tty\+A\+C\+M0} is listed, then see {\ttfamily Changing the arduino device name} under {\ttfamily Setup}.\textquotesingle{}
+\end{DoxyEnumerate}
+
+\subsubsection*{The L\+ED on the E\+SC flashes with a green light and the car will not drive forward.}
+
+The blinking green light indicates that the E\+SC is not recieving a correct pwm signal.
+\begin{DoxyEnumerate}
+\item Check that the E\+SC is connected to the pwm board via the servo cable. (Note that the power cable from the E\+SC should not be connected to the pwm board).
+\item Check that pin 10 on the pwm board is connected to pin D3 on the Arduino. If the pin is disconnected\+: Connect it and restart the arduino.
+\item If the problem persists\+: Recalibrate the E\+SC. See the T\+R\+X4 manual page 18 under \char`\"{}\+X\+L-\/5 H\+V Setup Programming\char`\"{} for how to do this.
+\end{DoxyEnumerate}
+
+\subsubsection*{The car makes sudden sharp turns or accelerations}
+
+
+\begin{DoxyEnumerate}
+\item Make sure that the recievers is correctly connected to the Arduino
+\item If no reciever is present, connect pin D2 and D12 to ground.
+\end{DoxyEnumerate}
+
+\subsubsection*{Wheel encoders are registering different rates}
+
+
+\begin{DoxyEnumerate}
+\item Check that all cables from the sensors, to the sensor boards and from the sensor boards to the wheel sensors are connected.
+\item Check that the left L\+ED och each sensor board shinse with a steady light. If not\+: Check the connections to the power again.
+\item Try turning the wheels by hand. The right L\+ED on each sensor board should blink. If not\+: Try adjusting the potentiometer on the sensor board.
+\item If both right L\+E\+Ds blink, run {\ttfamily roslaunch svea\+\_\+arduino basic\+\_\+remote\+\_\+reader.\+launch} and start {\ttfamily rosrun rqt\+\_\+plot rqt\+\_\+plot}. configure rqt\+\_\+plot to show {\ttfamily left\+\_\+ticks} and {\ttfamily right\+\_\+ticks} from the {\ttfamily /lli/encoder} topic. Try tweaking the potentiometer on the sensorboard that appears to be giving eroneous readings while using the remote to control the speed of the wheels. 
+\end{DoxyEnumerate}

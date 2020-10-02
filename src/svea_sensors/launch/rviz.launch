@@ -1,0 +1,12 @@
+<!--
+    Default launch file
+-->
+
+
+<launch>
+
+   <node type="rviz" name="rviz" pkg="rviz" args="-d $(find svea_sensors)/rviz/default.rviz" />
+   
+   <include file="$(find svea_sensors)/launch/default_odometry.launch" />
+  
+</launch>

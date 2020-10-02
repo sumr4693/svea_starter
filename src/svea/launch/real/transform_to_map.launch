@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Transform to map -->
+  <node pkg="svea" type="Transform_to_map.py" name="transform_to_map" output="screen">
+  </node>
+
+</launch>

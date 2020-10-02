@@ -1,0 +1,42 @@
+\hypertarget{group__ActuationToOutput}{}\section{Actuation value to output (board) pwm variables}
+\label{group__ActuationToOutput}\index{Actuation value to output (board) pwm variables@{Actuation value to output (board) pwm variables}}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \hyperlink{group__ActuationToOutput_ga3de5d6c408f667c395ab2b236e059724}{P\+W\+M\+\_\+\+R\+ES} = 4096\hypertarget{group__ActuationToOutput_ga3de5d6c408f667c395ab2b236e059724}{}\label{group__ActuationToOutput_ga3de5d6c408f667c395ab2b236e059724}
+
+\begin{DoxyCompactList}\small\item\em Resolution of the pwm board, 12 bit. \end{DoxyCompactList}\item 
+const float \hyperlink{group__ActuationToOutput_gadf577758fd2164217d18fb25c119c974}{D\+U\+T\+Y\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+M\+IN} = 1.\+000\hypertarget{group__ActuationToOutput_gadf577758fd2164217d18fb25c119c974}{}\label{group__ActuationToOutput_gadf577758fd2164217d18fb25c119c974}
+
+\begin{DoxyCompactList}\small\item\em Minimum duty cycle of the pwm board (us) \end{DoxyCompactList}\item 
+const float \hyperlink{group__ActuationToOutput_ga716fdda2246d4b15a6b8d32444ac8439}{D\+U\+T\+Y\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+M\+AX} = 2.\+000\hypertarget{group__ActuationToOutput_ga716fdda2246d4b15a6b8d32444ac8439}{}\label{group__ActuationToOutput_ga716fdda2246d4b15a6b8d32444ac8439}
+
+\begin{DoxyCompactList}\small\item\em Maximum duty cycle of the pwm board (us) \end{DoxyCompactList}\item 
+const int8\+\_\+t \hyperlink{group__ActuationToOutput_ga1f805f05ca679b7b28951bfa6659294d}{I\+N\+P\+U\+T\+\_\+\+M\+IN} = -\/127\hypertarget{group__ActuationToOutput_ga1f805f05ca679b7b28951bfa6659294d}{}\label{group__ActuationToOutput_ga1f805f05ca679b7b28951bfa6659294d}
+
+\begin{DoxyCompactList}\small\item\em Minimum actuation value. \end{DoxyCompactList}\item 
+const int8\+\_\+t \hyperlink{group__ActuationToOutput_ga5a9006872f4d527c3640197b6c080b35}{I\+N\+P\+U\+T\+\_\+\+N\+E\+U\+T\+R\+AL} = 0\hypertarget{group__ActuationToOutput_ga5a9006872f4d527c3640197b6c080b35}{}\label{group__ActuationToOutput_ga5a9006872f4d527c3640197b6c080b35}
+
+\begin{DoxyCompactList}\small\item\em Neutral actuation value. \end{DoxyCompactList}\item 
+const int8\+\_\+t \hyperlink{group__ActuationToOutput_ga54b4e4d7476d53406564c1e9159df212}{I\+N\+P\+U\+T\+\_\+\+M\+AX} = 127\hypertarget{group__ActuationToOutput_ga54b4e4d7476d53406564c1e9159df212}{}\label{group__ActuationToOutput_ga54b4e4d7476d53406564c1e9159df212}
+
+\begin{DoxyCompactList}\small\item\em Maximum actuation value. \end{DoxyCompactList}\item 
+const float \hyperlink{group__ActuationToOutput_ga1e7ca795ca78a0b20f4fbc06ea505cfb}{P\+W\+M\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY} = 100.\+0\hypertarget{group__ActuationToOutput_ga1e7ca795ca78a0b20f4fbc06ea505cfb}{}\label{group__ActuationToOutput_ga1e7ca795ca78a0b20f4fbc06ea505cfb}
+
+\begin{DoxyCompactList}\small\item\em Wanted frequency of the pwm board (Hz) \end{DoxyCompactList}\item 
+const unsigned long \hyperlink{group__ActuationToOutput_ga606bf90e7566da13c2e4c3d2ef163e6b}{P\+W\+M\+\_\+\+M\+I\+N\+\_\+\+T\+I\+CK} = \hyperlink{group__ActuationToOutput_gadf577758fd2164217d18fb25c119c974}{D\+U\+T\+Y\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+M\+IN}$\ast$\hyperlink{group__ActuationToOutput_ga1e7ca795ca78a0b20f4fbc06ea505cfb}{P\+W\+M\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY}$\ast$\hyperlink{group__ActuationToOutput_ga3de5d6c408f667c395ab2b236e059724}{P\+W\+M\+\_\+\+R\+ES}\hypertarget{group__ActuationToOutput_ga606bf90e7566da13c2e4c3d2ef163e6b}{}\label{group__ActuationToOutput_ga606bf90e7566da13c2e4c3d2ef163e6b}
+
+\begin{DoxyCompactList}\small\item\em The minimum value that can be sent to the pwm board If \hyperlink{svea__arduino__src_8h_ab3d64504be0ebfe1754aec5485ddbb72}{tune\+\_\+pwm\+\_\+freq()} is called this value is only used temporarily. \end{DoxyCompactList}\item 
+const unsigned long \hyperlink{group__ActuationToOutput_ga5538377a8c17947a2f35bfd31e7399fa}{P\+W\+M\+\_\+\+M\+A\+X\+\_\+\+T\+I\+CK} = \hyperlink{group__ActuationToOutput_ga716fdda2246d4b15a6b8d32444ac8439}{D\+U\+T\+Y\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+M\+AX}$\ast$\hyperlink{group__ActuationToOutput_ga1e7ca795ca78a0b20f4fbc06ea505cfb}{P\+W\+M\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY}$\ast$\hyperlink{group__ActuationToOutput_ga3de5d6c408f667c395ab2b236e059724}{P\+W\+M\+\_\+\+R\+ES}\hypertarget{group__ActuationToOutput_ga5538377a8c17947a2f35bfd31e7399fa}{}\label{group__ActuationToOutput_ga5538377a8c17947a2f35bfd31e7399fa}
+
+\begin{DoxyCompactList}\small\item\em The maximum 12-\/bit value that can be sent to the pwm board If \hyperlink{svea__arduino__src_8h_ab3d64504be0ebfe1754aec5485ddbb72}{tune\+\_\+pwm\+\_\+freq()} is called this value is only used temporarily. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{group__ActuationToOutput_gaa6aecad7bb848a436df0b7c89aa1f48f}{P\+W\+M\+\_\+\+N\+E\+U\+T\+R\+A\+L\+\_\+\+T\+I\+CK} = int((\hyperlink{group__ActuationToOutput_ga606bf90e7566da13c2e4c3d2ef163e6b}{P\+W\+M\+\_\+\+M\+I\+N\+\_\+\+T\+I\+CK} + (\hyperlink{group__ActuationToOutput_ga5538377a8c17947a2f35bfd31e7399fa}{P\+W\+M\+\_\+\+M\+A\+X\+\_\+\+T\+I\+CK} -\/ \hyperlink{group__ActuationToOutput_ga606bf90e7566da13c2e4c3d2ef163e6b}{P\+W\+M\+\_\+\+M\+I\+N\+\_\+\+T\+I\+CK})$\ast$0.\+5)/1000.\+0 + 0.\+5)\hypertarget{group__ActuationToOutput_gaa6aecad7bb848a436df0b7c89aa1f48f}{}\label{group__ActuationToOutput_gaa6aecad7bb848a436df0b7c89aa1f48f}
+
+\begin{DoxyCompactList}\small\item\em The 12-\/bit value corresponding to a neutral duty cycle. \end{DoxyCompactList}\item 
+float \hyperlink{group__ActuationToOutput_ga8e7323c31db382601e81947c2bba345b}{I\+N\+P\+U\+T\+\_\+\+S\+C\+A\+LE} = ((\hyperlink{group__ActuationToOutput_ga1e7ca795ca78a0b20f4fbc06ea505cfb}{P\+W\+M\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY}$\ast$\hyperlink{group__ActuationToOutput_ga3de5d6c408f667c395ab2b236e059724}{P\+W\+M\+\_\+\+R\+ES}$\ast$\hyperlink{group__ActuationToOutput_gadf577758fd2164217d18fb25c119c974}{D\+U\+T\+Y\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+M\+IN})/1000.\+0 -\/ \hyperlink{group__ActuationToOutput_gaa6aecad7bb848a436df0b7c89aa1f48f}{P\+W\+M\+\_\+\+N\+E\+U\+T\+R\+A\+L\+\_\+\+T\+I\+CK})/(float)\hyperlink{group__ActuationToOutput_ga1f805f05ca679b7b28951bfa6659294d}{I\+N\+P\+U\+T\+\_\+\+M\+IN}\hypertarget{group__ActuationToOutput_ga8e7323c31db382601e81947c2bba345b}{}\label{group__ActuationToOutput_ga8e7323c31db382601e81947c2bba345b}
+
+\begin{DoxyCompactList}\small\item\em The scaling factor between actuation values and the 12-\/bit values sent to the pwm board. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+N\+O\+TE\+: The real pwm frequency from the board will differ between boards, even if the sam frequency is set. That is why \hyperlink{svea__arduino__src_8h_af99fa97e441e842b197dacc4a1a95a99}{process\+Pwm()} exists. 

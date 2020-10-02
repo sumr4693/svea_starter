@@ -1,0 +1,335 @@
+\hypertarget{svea__arduino__src_8h}{}\section{/home/nvidia/starter\+\_\+ws/src/svea\+\_\+starter/src/svea\+\_\+arduino/svea\+\_\+arduino\+\_\+src/svea\+\_\+arduino\+\_\+src.h File Reference}
+\label{svea__arduino__src_8h}\index{/home/nvidia/starter\+\_\+ws/src/svea\+\_\+starter/src/svea\+\_\+arduino/svea\+\_\+arduino\+\_\+src/svea\+\_\+arduino\+\_\+src.\+h@{/home/nvidia/starter\+\_\+ws/src/svea\+\_\+starter/src/svea\+\_\+arduino/svea\+\_\+arduino\+\_\+src/svea\+\_\+arduino\+\_\+src.\+h}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{svea__arduino__src_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{svea__arduino__src_8h_aac8ead540fcc9a26a2dac8912f865e3f}{D\+U\+R\+A\+T\+I\+O\+N\+\_\+\+D\+E\+B\+UG}~0\hypertarget{svea__arduino__src_8h_aac8ead540fcc9a26a2dac8912f865e3f}{}\label{svea__arduino__src_8h_aac8ead540fcc9a26a2dac8912f865e3f}
+
+\begin{DoxyCompactList}\small\item\em Enable/\+Disable reciever duration readouts over serial port. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef svea\+\_\+arduino\+::lli\+\_\+ctrl \hyperlink{svea__arduino__src_8h_a397644608f772ef60685f6a938f43ea1}{lli\+\_\+ctrl\+\_\+in}\hypertarget{svea__arduino__src_8h_a397644608f772ef60685f6a938f43ea1}{}\label{svea__arduino__src_8h_a397644608f772ef60685f6a938f43ea1}
+
+\begin{DoxyCompactList}\small\item\em Message type for incomming messages. \end{DoxyCompactList}\item 
+typedef svea\+\_\+arduino\+::lli\+\_\+ctrl \hyperlink{svea__arduino__src_8h_a6b033df4aed2c02e82dc2962f73c2ccb}{lli\+\_\+ctrl\+\_\+out}\hypertarget{svea__arduino__src_8h_a6b033df4aed2c02e82dc2962f73c2ccb}{}\label{svea__arduino__src_8h_a6b033df4aed2c02e82dc2962f73c2ccb}
+
+\begin{DoxyCompactList}\small\item\em Message type for outgoing messages\textquotesingle{}. \end{DoxyCompactList}\item 
+typedef svea\+\_\+arduino\+::lli\+\_\+encoder {\bfseries lli\+\_\+encoder}\hypertarget{svea__arduino__src_8h_a79e81db84cbb5c8bfe665f4edf28a120}{}\label{svea__arduino__src_8h_a79e81db84cbb5c8bfe665f4edf28a120}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{svea__arduino__src_8h_adab070eb39b45b4c79b5d7e3cafa9514}{set\+\_\+pwm\+\_\+driver} (uint8\+\_\+t channel, int8\+\_\+t in\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Set actuation P\+WM convert a 8 bit actuation value to a pwm signal and send it to the pwm board. The value gets scaled to a duration that suits the servos (approximately 1 to 2 milli seconds). The scalling uses frequency measurements from pin 10 on the pwm board. \end{DoxyCompactList}\item 
+void \hyperlink{svea__arduino__src_8h_aa5545eb35f187e5fd11a483a265bed7b}{actuate} (const int8\+\_\+t actuation\+\_\+values\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Send settings to the pwm board through \hyperlink{svea__arduino__src_8ino_adab070eb39b45b4c79b5d7e3cafa9514}{set\+\_\+pwm\+\_\+driver()} \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{svea__arduino__src_8h_ad7d57085af575cbb5dc21e523f3a3321}{set\+\_\+actuated\+\_\+code} ()\hypertarget{svea__arduino__src_8h_ad7d57085af575cbb5dc21e523f3a3321}{}\label{svea__arduino__src_8h_ad7d57085af575cbb5dc21e523f3a3321}
+
+\begin{DoxyCompactList}\small\item\em set the control code in messages sent to the computer \end{DoxyCompactList}\item 
+void \hyperlink{svea__arduino__src_8h_ae79b6def446edd5a233efe74bc1f2a7b}{cb\+\_\+ctrl\+\_\+request} (const \hyperlink{svea__arduino__src_8h_a397644608f772ef60685f6a938f43ea1}{lli\+\_\+ctrl\+\_\+in} \&data)
+\begin{DoxyCompactList}\small\item\em Callback function for control requests from R\+OS Interprets the message and sends the values to the pwm board through \hyperlink{svea__arduino__src_8ino_aa5545eb35f187e5fd11a483a265bed7b}{actuate()}. \end{DoxyCompactList}\item 
+int8\+\_\+t \hyperlink{svea__arduino__src_8h_a1c4a5154127fe3f9963eb968b0714b90}{pwm\+\_\+to\+\_\+actuation} (unsigned long duration)
+\item 
+void \hyperlink{svea__arduino__src_8h_a2948125fe6592c36c5c0e641478e2db0}{pwm\+Event} ()\hypertarget{svea__arduino__src_8h_a2948125fe6592c36c5c0e641478e2db0}{}\label{svea__arduino__src_8h_a2948125fe6592c36c5c0e641478e2db0}
+
+\begin{DoxyCompactList}\small\item\em Called when a pwm signal from the remote has been recieved Takes the actuation values from the remote and sends them to R\+OS. The frequency of the R\+OS messages is around 100 Hz, based on the frequency of the reciever. If the computer is not sending any signals or the \hyperlink{group__StatusVariables_gae31e17311163c382d2de940091954419}{R\+E\+M\+\_\+\+O\+V\+E\+R\+R\+I\+DE} flag is set (by pushing the deifferential switch to the formost position) the actuation values will also be sent to the pwm board through \hyperlink{svea__arduino__src_8ino_aa5545eb35f187e5fd11a483a265bed7b}{actuate()}. \end{DoxyCompactList}\item 
+void \hyperlink{svea__arduino__src_8h_af99fa97e441e842b197dacc4a1a95a99}{process\+Pwm} ()
+\begin{DoxyCompactList}\small\item\em Handle pwm events. \end{DoxyCompactList}\item 
+void \hyperlink{svea__arduino__src_8h_ab3d64504be0ebfe1754aec5485ddbb72}{tune\+\_\+pwm\+\_\+freq} ()\hypertarget{svea__arduino__src_8h_ab3d64504be0ebfe1754aec5485ddbb72}{}\label{svea__arduino__src_8h_ab3d64504be0ebfe1754aec5485ddbb72}
+
+\begin{DoxyCompactList}\small\item\em Tune the frequency of the pwm board Measure the frequency from the pwm board on pin 10 and adjust the frequency to match \hyperlink{group__ActuationToOutput_ga1e7ca795ca78a0b20f4fbc06ea505cfb}{P\+W\+M\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY} Will then measure the adjusted value and futher tune \hyperlink{group__ActuationToOutput_gaa6aecad7bb848a436df0b7c89aa1f48f}{P\+W\+M\+\_\+\+N\+E\+U\+T\+R\+A\+L\+\_\+\+T\+I\+CK} and \hyperlink{group__ActuationToOutput_ga8e7323c31db382601e81947c2bba345b}{I\+N\+P\+U\+T\+\_\+\+S\+C\+A\+LE}. If Pin D3 is not connected to pin 10 on the pwm board weirdnes might ensue. \end{DoxyCompactList}\item 
+void \hyperlink{svea__arduino__src_8h_a11eacef653351913656e56d12c152346}{process\+Encoder\+Ticks} ()
+\begin{DoxyCompactList}\small\item\em Count the encoder ticks since last call and send the result to R\+OS. \end{DoxyCompactList}\item 
+ros\+::\+Publisher \hyperlink{group__ROSSetup_ga93b3bd1d04d33169e1a28258a8b07af7}{remote\+\_\+pub} (\char`\"{}/lli/remote\char`\"{},\&M\+S\+G\+\_\+\+R\+E\+M\+O\+TE)
+\begin{DoxyCompactList}\small\item\em Remote message publisher. \end{DoxyCompactList}\item 
+ros\+::\+Publisher \hyperlink{group__ROSSetup_ga3053db74e7b16c6af3d7eda6d8b0c83c}{ctrl\+\_\+actuated\+\_\+pub} (\char`\"{}/lli/ctrl\+\_\+actuated\char`\"{},\&M\+S\+G\+\_\+\+A\+C\+T\+U\+A\+T\+ED)
+\begin{DoxyCompactList}\small\item\em Actuated control message publisher. \end{DoxyCompactList}\item 
+ros\+::\+Publisher \hyperlink{group__ROSSetup_gae33f55282b004e6f50e44ec7df40c321}{encoder\+\_\+pub} (\char`\"{}/lli/encoder\char`\"{},\&M\+S\+G\+\_\+\+E\+N\+C\+O\+D\+ER)
+\begin{DoxyCompactList}\small\item\em Encoder reading publisher. \end{DoxyCompactList}\item 
+ros\+::\+Subscriber$<$ \hyperlink{svea__arduino__src_8h_a397644608f772ef60685f6a938f43ea1}{lli\+\_\+ctrl\+\_\+in} $>$ \hyperlink{group__ROSSetup_ga9fcbca83450aa2c5c64cde1a0e0557c5}{ctrl\+\_\+request} (\char`\"{}/lli/ctrl\+\_\+request\char`\"{},\&cb\+\_\+ctrl\+\_\+request)
+\begin{DoxyCompactList}\small\item\em Controll request subscriber. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \hyperlink{group__PwmOutputChannels_ga66104e4dc16a69aecae1e217ffb0c006}{P\+W\+M\+\_\+\+S\+T\+E\+E\+R\+\_\+\+C\+H\+A\+N\+N\+EL} = 14
+\begin{DoxyCompactList}\small\item\em Pwm pin for steering. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__PwmOutputChannels_ga93d060ae523eab7a0c1c34b9ac646313}{P\+W\+M\+\_\+\+S\+P\+E\+E\+D\+\_\+\+C\+H\+A\+N\+N\+EL} = 15
+\begin{DoxyCompactList}\small\item\em Pwm pin for velocity. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__PwmOutputChannels_gad993d35a100ed514d5de22d43c52bbf3}{P\+W\+M\+\_\+\+G\+E\+A\+R\+\_\+\+C\+H\+A\+N\+N\+EL} = 13
+\begin{DoxyCompactList}\small\item\em Pwm pin for transmission. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__PwmOutputChannels_ga627cee35c7979d79719e12d6c22145e9}{P\+W\+M\+\_\+\+F\+D\+I\+F\+F\+\_\+\+C\+H\+A\+N\+N\+EL} = 12
+\begin{DoxyCompactList}\small\item\em Pwm pin for front differential lock. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__PwmOutputChannels_ga2e4d0ce85dd092067453618a88db0ac6}{P\+W\+M\+\_\+\+R\+D\+I\+F\+F\+\_\+\+C\+H\+A\+N\+N\+EL} = 11
+\item 
+const uint8\+\_\+t \hyperlink{group__PwmOutputChannels_gad8b2f525f688762ad7fd186771ead0b8}{P\+W\+M\+\_\+\+C\+H\+A\+N\+N\+E\+LS} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em Array with mapping for the P\+WM channels. \end{DoxyCompactList}\item 
+const int \hyperlink{group__ActuationToOutput_ga3de5d6c408f667c395ab2b236e059724}{P\+W\+M\+\_\+\+R\+ES} = 4096
+\begin{DoxyCompactList}\small\item\em Resolution of the pwm board, 12 bit. \end{DoxyCompactList}\item 
+const float \hyperlink{group__ActuationToOutput_gadf577758fd2164217d18fb25c119c974}{D\+U\+T\+Y\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+M\+IN} = 1.\+000
+\begin{DoxyCompactList}\small\item\em Minimum duty cycle of the pwm board (us) \end{DoxyCompactList}\item 
+const float \hyperlink{group__ActuationToOutput_ga716fdda2246d4b15a6b8d32444ac8439}{D\+U\+T\+Y\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+M\+AX} = 2.\+000
+\begin{DoxyCompactList}\small\item\em Maximum duty cycle of the pwm board (us) \end{DoxyCompactList}\item 
+const int8\+\_\+t \hyperlink{group__ActuationToOutput_ga1f805f05ca679b7b28951bfa6659294d}{I\+N\+P\+U\+T\+\_\+\+M\+IN} = -\/127
+\begin{DoxyCompactList}\small\item\em Minimum actuation value. \end{DoxyCompactList}\item 
+const int8\+\_\+t \hyperlink{group__ActuationToOutput_ga5a9006872f4d527c3640197b6c080b35}{I\+N\+P\+U\+T\+\_\+\+N\+E\+U\+T\+R\+AL} = 0
+\begin{DoxyCompactList}\small\item\em Neutral actuation value. \end{DoxyCompactList}\item 
+const int8\+\_\+t \hyperlink{group__ActuationToOutput_ga54b4e4d7476d53406564c1e9159df212}{I\+N\+P\+U\+T\+\_\+\+M\+AX} = 127
+\begin{DoxyCompactList}\small\item\em Maximum actuation value. \end{DoxyCompactList}\item 
+const float \hyperlink{group__ActuationToOutput_ga1e7ca795ca78a0b20f4fbc06ea505cfb}{P\+W\+M\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY} = 100.\+0
+\begin{DoxyCompactList}\small\item\em Wanted frequency of the pwm board (Hz) \end{DoxyCompactList}\item 
+const unsigned long \hyperlink{group__ActuationToOutput_ga606bf90e7566da13c2e4c3d2ef163e6b}{P\+W\+M\+\_\+\+M\+I\+N\+\_\+\+T\+I\+CK} = \hyperlink{group__ActuationToOutput_gadf577758fd2164217d18fb25c119c974}{D\+U\+T\+Y\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+M\+IN}$\ast$\hyperlink{group__ActuationToOutput_ga1e7ca795ca78a0b20f4fbc06ea505cfb}{P\+W\+M\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY}$\ast$\hyperlink{group__ActuationToOutput_ga3de5d6c408f667c395ab2b236e059724}{P\+W\+M\+\_\+\+R\+ES}
+\begin{DoxyCompactList}\small\item\em The minimum value that can be sent to the pwm board If \hyperlink{svea__arduino__src_8h_ab3d64504be0ebfe1754aec5485ddbb72}{tune\+\_\+pwm\+\_\+freq()} is called this value is only used temporarily. \end{DoxyCompactList}\item 
+const unsigned long \hyperlink{group__ActuationToOutput_ga5538377a8c17947a2f35bfd31e7399fa}{P\+W\+M\+\_\+\+M\+A\+X\+\_\+\+T\+I\+CK} = \hyperlink{group__ActuationToOutput_ga716fdda2246d4b15a6b8d32444ac8439}{D\+U\+T\+Y\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+M\+AX}$\ast$\hyperlink{group__ActuationToOutput_ga1e7ca795ca78a0b20f4fbc06ea505cfb}{P\+W\+M\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY}$\ast$\hyperlink{group__ActuationToOutput_ga3de5d6c408f667c395ab2b236e059724}{P\+W\+M\+\_\+\+R\+ES}
+\begin{DoxyCompactList}\small\item\em The maximum 12-\/bit value that can be sent to the pwm board If \hyperlink{svea__arduino__src_8h_ab3d64504be0ebfe1754aec5485ddbb72}{tune\+\_\+pwm\+\_\+freq()} is called this value is only used temporarily. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{group__ActuationToOutput_gaa6aecad7bb848a436df0b7c89aa1f48f}{P\+W\+M\+\_\+\+N\+E\+U\+T\+R\+A\+L\+\_\+\+T\+I\+CK} = int((\hyperlink{group__ActuationToOutput_ga606bf90e7566da13c2e4c3d2ef163e6b}{P\+W\+M\+\_\+\+M\+I\+N\+\_\+\+T\+I\+CK} + (\hyperlink{group__ActuationToOutput_ga5538377a8c17947a2f35bfd31e7399fa}{P\+W\+M\+\_\+\+M\+A\+X\+\_\+\+T\+I\+CK} -\/ \hyperlink{group__ActuationToOutput_ga606bf90e7566da13c2e4c3d2ef163e6b}{P\+W\+M\+\_\+\+M\+I\+N\+\_\+\+T\+I\+CK})$\ast$0.\+5)/1000.\+0 + 0.\+5)
+\begin{DoxyCompactList}\small\item\em The 12-\/bit value corresponding to a neutral duty cycle. \end{DoxyCompactList}\item 
+float \hyperlink{group__ActuationToOutput_ga8e7323c31db382601e81947c2bba345b}{I\+N\+P\+U\+T\+\_\+\+S\+C\+A\+LE} = ((\hyperlink{group__ActuationToOutput_ga1e7ca795ca78a0b20f4fbc06ea505cfb}{P\+W\+M\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY}$\ast$\hyperlink{group__ActuationToOutput_ga3de5d6c408f667c395ab2b236e059724}{P\+W\+M\+\_\+\+R\+ES}$\ast$\hyperlink{group__ActuationToOutput_gadf577758fd2164217d18fb25c119c974}{D\+U\+T\+Y\+\_\+\+C\+Y\+C\+L\+E\+\_\+\+M\+IN})/1000.\+0 -\/ \hyperlink{group__ActuationToOutput_gaa6aecad7bb848a436df0b7c89aa1f48f}{P\+W\+M\+\_\+\+N\+E\+U\+T\+R\+A\+L\+\_\+\+T\+I\+CK})/(float)\hyperlink{group__ActuationToOutput_ga1f805f05ca679b7b28951bfa6659294d}{I\+N\+P\+U\+T\+\_\+\+M\+IN}
+\begin{DoxyCompactList}\small\item\em The scaling factor between actuation values and the 12-\/bit values sent to the pwm board. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__RecieverPwmPins_ga2a0f80bf9db172cf17bb4b928e861c50}{S\+T\+E\+E\+R\+\_\+\+P\+IN} = 0
+\begin{DoxyCompactList}\small\item\em D8, Steering, connect to channel 1 on the reciever. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__RecieverPwmPins_gafee863b6234dfd9b3a4d97265e4a9a8a}{S\+P\+E\+E\+D\+\_\+\+P\+IN} = 1
+\begin{DoxyCompactList}\small\item\em D9, Velocity, connect to channel 2 on the reciever. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__RecieverPwmPins_gaa1ed2fccc158e7fcb5aab8eb00e39b72}{G\+E\+A\+R\+\_\+\+P\+IN} = 2
+\begin{DoxyCompactList}\small\item\em D10, Transmission, connect to channel 3 on the reciever. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__RecieverPwmPins_ga91432e122cb52e765d68aed43104e478}{F\+D\+I\+F\+F\+\_\+\+P\+IN} = 3
+\begin{DoxyCompactList}\small\item\em D11, Front differential, connect to channel 4 on the reciever. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__RecieverPwmPins_ga98a9ce3925b9f576ed03843a3c6c1623}{R\+D\+I\+F\+F\+\_\+\+P\+IN} = 4
+\begin{DoxyCompactList}\small\item\em D12, Rear differential, connect to channel 5 on the reciever. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__PwmInputConstants_gae2449e7e1058591bfbfdc0901c185602}{P\+W\+M\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE} = 8
+\begin{DoxyCompactList}\small\item\em P\+WM buffer size, should be a power of 2. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__PwmInputConstants_gafe4b1ae7ffab8edfcd8452cd3fb7bb74}{P\+W\+M\+\_\+\+I\+X\+\_\+\+M\+A\+SK} = \hyperlink{group__PwmInputConstants_gae2449e7e1058591bfbfdc0901c185602}{P\+W\+M\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE} -\/ 1
+\begin{DoxyCompactList}\small\item\em Modulo mask for buffer. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__PwmInputConstants_ga89098a2ff03e736c257b322e78e7c6e3}{P\+I\+N\+\_\+\+M\+A\+SK}
+\begin{DoxyCompactList}\small\item\em Pin mask used for falling edge detection. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__EncoderPins_ga14cc250717e67ba33ff892452b2454b7}{E\+N\+C\+O\+D\+E\+R\+\_\+\+P\+I\+N\+\_\+R} = 6
+\begin{DoxyCompactList}\small\item\em D6, Right wheel encoder tick pin. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__EncoderPins_gac51556d78c19fe7342678805ccc77b57}{E\+N\+C\+O\+D\+E\+R\+\_\+\+P\+I\+N\+\_\+L} = 7
+\begin{DoxyCompactList}\small\item\em D7, Left wheel encoder tick pin. \end{DoxyCompactList}\item 
+const unsigned long \hyperlink{svea__arduino__src_8h_acf921afc2a46077d6d48fc80b38f44e9}{S\+W\+\_\+\+T\+I\+M\+E\+O\+UT} = 200
+\item 
+const uint8\+\_\+t \hyperlink{group__MsgBitPositions_ga34eaead62b770ea48065591164ec9e29}{G\+E\+A\+R\+\_\+\+B\+IT} = 0
+\begin{DoxyCompactList}\small\item\em Bit used for gear value (0 unlocked, 1 locked) \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__MsgBitPositions_ga9b82b2c57fd205efb6f330b75d48c8dc}{F\+D\+I\+F\+F\+\_\+\+B\+IT} = 1
+\begin{DoxyCompactList}\small\item\em Bit used for front differential value (0 unlocked, 1 locked) \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__MsgBitPositions_ga4f5aa3ea23a63189068319996dc40fc5}{R\+D\+I\+F\+F\+\_\+\+B\+IT} = 2
+\item 
+const uint8\+\_\+t \hyperlink{group__MsgBitPositions_ga72cf872102541424c2048e61e50c0709}{A\+C\+T\+\_\+\+B\+I\+TS} \mbox{[}3\mbox{]} = \{\hyperlink{group__MsgBitPositions_ga34eaead62b770ea48065591164ec9e29}{G\+E\+A\+R\+\_\+\+B\+IT}, \hyperlink{group__MsgBitPositions_ga9b82b2c57fd205efb6f330b75d48c8dc}{F\+D\+I\+F\+F\+\_\+\+B\+IT}, \hyperlink{group__MsgBitPositions_ga4f5aa3ea23a63189068319996dc40fc5}{R\+D\+I\+F\+F\+\_\+\+B\+IT}\}
+\begin{DoxyCompactList}\small\item\em Vector with the bit postitions in msg.\+gear\+\_\+diff in order\+: gear, front diff, rear diff. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__MsgBitPositions_ga9f523412ec86e2d7c6ecd3c1a49a2d9b}{E\+N\+A\+B\+L\+E\+\_\+\+G\+E\+A\+R\+C\+H\+A\+N\+G\+E\+\_\+\+B\+IT} = 3
+\begin{DoxyCompactList}\small\item\em Bit indicating if the G\+E\+A\+R\+\_\+\+B\+IT value should be read from incoming messages. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__MsgBitPositions_ga62390c182ca2894e4370302b2ee56ed9}{E\+N\+A\+B\+L\+E\+\_\+\+F\+D\+I\+F\+C\+H\+A\+N\+G\+E\+\_\+\+B\+IT} = 4
+\begin{DoxyCompactList}\small\item\em Bit indicating if the front differential values should be read from incoming messages. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__MsgBitPositions_gabd2bfd09673f529363f995d6ea7a94fb}{E\+N\+A\+B\+L\+E\+\_\+\+R\+D\+I\+F\+C\+H\+A\+N\+G\+E\+\_\+\+B\+IT} = 5
+\begin{DoxyCompactList}\small\item\em Bit indicating if the rear differential values should be read from incoming messages. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__MsgBitPositions_gafee1df3a4ab5fca7535d372d876036ea}{E\+N\+A\+B\+L\+E\+\_\+\+A\+C\+T\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+B\+I\+TS} \mbox{[}3\mbox{]} = \{\hyperlink{group__MsgBitPositions_ga9f523412ec86e2d7c6ecd3c1a49a2d9b}{E\+N\+A\+B\+L\+E\+\_\+\+G\+E\+A\+R\+C\+H\+A\+N\+G\+E\+\_\+\+B\+IT}, \hyperlink{group__MsgBitPositions_ga62390c182ca2894e4370302b2ee56ed9}{E\+N\+A\+B\+L\+E\+\_\+\+F\+D\+I\+F\+C\+H\+A\+N\+G\+E\+\_\+\+B\+IT}, \hyperlink{group__MsgBitPositions_gabd2bfd09673f529363f995d6ea7a94fb}{E\+N\+A\+B\+L\+E\+\_\+\+R\+D\+I\+F\+C\+H\+A\+N\+G\+E\+\_\+\+B\+IT}\}
+\begin{DoxyCompactList}\small\item\em Vector with the enable change bits in order\+: gear, front diff, rear diff. \end{DoxyCompactList}\item 
+const int8\+\_\+t \hyperlink{group__MsgBitPositions_ga7e9874545710fd223a9d783f83e11a62}{M\+S\+G\+\_\+\+T\+O\+\_\+\+A\+C\+T\+\_\+\+O\+FF} \mbox{[}3\mbox{]} = \{\hyperlink{group__ActuationToOutput_ga54b4e4d7476d53406564c1e9159df212}{I\+N\+P\+U\+T\+\_\+\+M\+AX}, \hyperlink{group__ActuationToOutput_ga54b4e4d7476d53406564c1e9159df212}{I\+N\+P\+U\+T\+\_\+\+M\+AX}-\/10, \hyperlink{group__ActuationToOutput_ga1f805f05ca679b7b28951bfa6659294d}{I\+N\+P\+U\+T\+\_\+\+M\+IN}+10\}
+\begin{DoxyCompactList}\small\item\em Value that should be actuated if the corresponding bit in msg.\+gear\+\_\+diff is not set. \end{DoxyCompactList}\item 
+const int8\+\_\+t \hyperlink{group__MsgBitPositions_gaf2abc78dd02137e1e3c98f381c80efc5}{M\+S\+G\+\_\+\+T\+O\+\_\+\+A\+C\+T\+\_\+\+ON} \mbox{[}3\mbox{]} = \{\hyperlink{group__ActuationToOutput_ga1f805f05ca679b7b28951bfa6659294d}{I\+N\+P\+U\+T\+\_\+\+M\+IN}, \hyperlink{group__ActuationToOutput_ga1f805f05ca679b7b28951bfa6659294d}{I\+N\+P\+U\+T\+\_\+\+M\+IN}+10, \hyperlink{group__ActuationToOutput_ga54b4e4d7476d53406564c1e9159df212}{I\+N\+P\+U\+T\+\_\+\+M\+AX}-\/10\}
+\begin{DoxyCompactList}\small\item\em Value that should be actuated if the corresponding bit in msg.\+gear\+\_\+diff is not set. \end{DoxyCompactList}\item 
+Adafruit\+\_\+\+P\+W\+M\+Servo\+Driver \hyperlink{svea__arduino__src_8h_af45c5982a9c799a7a6acd25f272f826b}{external\+\_\+pwm} = Adafruit\+\_\+\+P\+W\+M\+Servo\+Driver()\hypertarget{svea__arduino__src_8h_af45c5982a9c799a7a6acd25f272f826b}{}\label{svea__arduino__src_8h_af45c5982a9c799a7a6acd25f272f826b}
+
+\begin{DoxyCompactList}\small\item\em pwm board instance \end{DoxyCompactList}\item 
+volatile long \hyperlink{svea__arduino__src_8h_a313a0dafc729c2dbc7cbaf993c734f56}{P\+W\+M\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+M\+E\+A\+S\+U\+R\+ED} = 0
+\begin{DoxyCompactList}\small\item\em Duration between rising edges of the signal from the pwm board. \end{DoxyCompactList}\item 
+int8\+\_\+t \hyperlink{group__ActuationValueStorage_ga7c78ea1be4ba9168380940fe5fdb889f}{S\+W\+\_\+\+A\+C\+T\+U\+A\+T\+I\+ON} \mbox{[}5\mbox{]} = \{0,0,\hyperlink{group__MsgBitPositions_ga7e9874545710fd223a9d783f83e11a62}{M\+S\+G\+\_\+\+T\+O\+\_\+\+A\+C\+T\+\_\+\+O\+FF}\mbox{[}0\mbox{]},\hyperlink{group__MsgBitPositions_ga7e9874545710fd223a9d783f83e11a62}{M\+S\+G\+\_\+\+T\+O\+\_\+\+A\+C\+T\+\_\+\+O\+FF}\mbox{[}1\mbox{]},\hyperlink{group__MsgBitPositions_ga7e9874545710fd223a9d783f83e11a62}{M\+S\+G\+\_\+\+T\+O\+\_\+\+A\+C\+T\+\_\+\+O\+FF}\mbox{[}2\mbox{]}\}
+\begin{DoxyCompactList}\small\item\em Actuation values sent from the computer. \end{DoxyCompactList}\item 
+int8\+\_\+t \hyperlink{group__ActuationValueStorage_gaa62470a230859dd30f46b50aa6c0536e}{R\+E\+M\+\_\+\+A\+C\+T\+U\+A\+T\+I\+ON} \mbox{[}5\mbox{]} = \{0,0,\hyperlink{group__MsgBitPositions_ga7e9874545710fd223a9d783f83e11a62}{M\+S\+G\+\_\+\+T\+O\+\_\+\+A\+C\+T\+\_\+\+O\+FF}\mbox{[}0\mbox{]},\hyperlink{group__MsgBitPositions_ga7e9874545710fd223a9d783f83e11a62}{M\+S\+G\+\_\+\+T\+O\+\_\+\+A\+C\+T\+\_\+\+O\+FF}\mbox{[}1\mbox{]},\hyperlink{group__MsgBitPositions_ga7e9874545710fd223a9d783f83e11a62}{M\+S\+G\+\_\+\+T\+O\+\_\+\+A\+C\+T\+\_\+\+O\+FF}\mbox{[}2\mbox{]}\}
+\begin{DoxyCompactList}\small\item\em Actuation values sent from the remote. \end{DoxyCompactList}\item 
+const int8\+\_\+t \hyperlink{group__ActuationValueStorage_ga39e6648fcb502c3da718d80b661974ae}{I\+D\+L\+E\+\_\+\+A\+C\+T\+U\+A\+T\+I\+ON} \mbox{[}5\mbox{]} = \{0,0,0,\hyperlink{group__MsgBitPositions_ga7e9874545710fd223a9d783f83e11a62}{M\+S\+G\+\_\+\+T\+O\+\_\+\+A\+C\+T\+\_\+\+O\+FF}\mbox{[}1\mbox{]},\hyperlink{group__MsgBitPositions_ga7e9874545710fd223a9d783f83e11a62}{M\+S\+G\+\_\+\+T\+O\+\_\+\+A\+C\+T\+\_\+\+O\+FF}\mbox{[}2\mbox{]}\}
+\begin{DoxyCompactList}\small\item\em Actuation values sent when both the remote and the computer are idle. \end{DoxyCompactList}\item 
+volatile long \hyperlink{group__PwmMeasurtement_gaeb758acd90cce2a48375254eb9c2d843}{P\+W\+M\+\_\+\+H\+I\+G\+H\+\_\+\+T\+I\+ME}
+\item 
+volatile bool \hyperlink{group__PwmMeasurtement_ga1ca1be2c986a00d6a79e5d7d5ab1313c}{H\+I\+G\+H\+\_\+\+R\+E\+C\+I\+E\+V\+ED} = false
+\begin{DoxyCompactList}\small\item\em True if a rising edge has been observed since the latest values was sent to R\+OS. \end{DoxyCompactList}\item 
+volatile uint8\+\_\+t \hyperlink{group__PwmMeasurtement_ga3f84f08978073d634ef59d44eba3c32a}{I\+N\+T\+\_\+\+P\+I\+N\+\_\+\+S\+T\+A\+T\+US} = 0
+\begin{DoxyCompactList}\small\item\em Indicates which pins that are still high since the last rising edge. \end{DoxyCompactList}\item 
+volatile unsigned long \hyperlink{group__PwmMeasurtement_ga1980b7b5ba1ceabb0b5c60c9da70164e}{P\+W\+M\+\_\+\+T\+\_\+\+B\+U\+F\+F\+ER} \mbox{[}\hyperlink{group__PwmInputConstants_gae2449e7e1058591bfbfdc0901c185602}{P\+W\+M\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Falling edge interrupt time buffer. \end{DoxyCompactList}\item 
+volatile uint8\+\_\+t \hyperlink{group__PwmMeasurtement_gaed4f8ecf3e1ca2d8bfa8904a43729f57}{P\+W\+M\+\_\+\+S\+\_\+\+B\+U\+F\+F\+ER} \mbox{[}\hyperlink{group__PwmInputConstants_gae2449e7e1058591bfbfdc0901c185602}{P\+W\+M\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Falling edge interrupt pin readig buffer. \end{DoxyCompactList}\item 
+volatile uint8\+\_\+t \hyperlink{group__PwmMeasurtement_ga240562bcf38322f5e5fe4498c0884a79}{P\+W\+M\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+W\+\_\+\+IX} = 0
+\begin{DoxyCompactList}\small\item\em Pwm buffers read index. \end{DoxyCompactList}\item 
+volatile uint8\+\_\+t \hyperlink{group__PwmMeasurtement_gac0879dcb58dda890aceef95b7f4bc793}{P\+W\+M\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+R\+\_\+\+IX} = 0
+\begin{DoxyCompactList}\small\item\em Pwm buffers write index. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group__EncoderVariables_ga63bd10c23b8e1e359ccc54b26ddccf2b}{R\+I\+G\+H\+T\+\_\+\+T\+I\+C\+K\+\_\+\+C\+O\+U\+NT} = 0
+\begin{DoxyCompactList}\small\item\em Right wheel tick count. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group__EncoderVariables_ga7b675fdfa3a53486da47f929c42ef4a8}{L\+E\+F\+T\+\_\+\+T\+I\+C\+K\+\_\+\+C\+O\+U\+NT} = 0
+\begin{DoxyCompactList}\small\item\em left wheel tick count \end{DoxyCompactList}\item 
+unsigned long \hyperlink{group__StatusVariables_ga82efae9ec88cdde7eaa3cd149aa5756c}{S\+W\+\_\+\+T\+\_\+\+R\+E\+C\+I\+E\+V\+ED} =millis()
+\begin{DoxyCompactList}\small\item\em Time when last message was recieved from the computer. \end{DoxyCompactList}\item 
+bool \hyperlink{group__StatusVariables_ga1dc5fbe81aa54db10c814d5ff7adba6f}{R\+E\+M\+\_\+\+I\+D\+LE} = true
+\begin{DoxyCompactList}\small\item\em True if the remote is considered idle. \end{DoxyCompactList}\item 
+bool \hyperlink{group__StatusVariables_gae31e17311163c382d2de940091954419}{R\+E\+M\+\_\+\+O\+V\+E\+R\+R\+I\+DE} = false
+\begin{DoxyCompactList}\small\item\em True if the remote should override computer inputs. \end{DoxyCompactList}\item 
+bool \hyperlink{group__StatusVariables_ga5f2f8cd3c1e83a4aac8976d9dbb71e4b}{S\+W\+\_\+\+I\+D\+LE} = true
+\begin{DoxyCompactList}\small\item\em True if the computer is considered idle. \end{DoxyCompactList}\item 
+ros\+::\+Node\+Handle\+\_\+$<$ Arduino\+Hardware, 1, 3, 100, 100 $>$ \hyperlink{group__ROSSetup_ga9518748567d9dc49cb5d062ae16eccac}{nh}
+\begin{DoxyCompactList}\small\item\em Node\+Handle class definitions. \end{DoxyCompactList}\item 
+\hyperlink{svea__arduino__src_8h_a6b033df4aed2c02e82dc2962f73c2ccb}{lli\+\_\+ctrl\+\_\+out} \hyperlink{group__ROSSetup_gad1e4ff3dbb3ddc9a6fadfcc80b6b6b20}{M\+S\+G\+\_\+\+R\+E\+M\+O\+TE}
+\begin{DoxyCompactList}\small\item\em Message used for sending the remote signals. \end{DoxyCompactList}\item 
+\hyperlink{svea__arduino__src_8h_a6b033df4aed2c02e82dc2962f73c2ccb}{lli\+\_\+ctrl\+\_\+out} \hyperlink{group__ROSSetup_ga7b886027c8fb98155a2757bc5be08615}{M\+S\+G\+\_\+\+A\+C\+T\+U\+A\+T\+ED}
+\begin{DoxyCompactList}\small\item\em Message sending actuated messages. \end{DoxyCompactList}\item 
+lli\+\_\+encoder \hyperlink{group__ROSSetup_ga46e4ead0cae634e475c6606dd97cc393}{M\+S\+G\+\_\+\+E\+N\+C\+O\+D\+ER}
+\begin{DoxyCompactList}\small\item\em Message used for outgoing wheel encoder messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{svea\+\_\+arduino\+\_\+src.\+h@{svea\+\_\+arduino\+\_\+src.\+h}!actuate@{actuate}}
+\index{actuate@{actuate}!svea\+\_\+arduino\+\_\+src.\+h@{svea\+\_\+arduino\+\_\+src.\+h}}
+\subsubsection[{\texorpdfstring{actuate(const int8\+\_\+t actuation\+\_\+values[])}{actuate(const int8_t actuation_values[])}}]{\setlength{\rightskip}{0pt plus 5cm}void actuate (
+\begin{DoxyParamCaption}
+\item[{const int8\+\_\+t}]{actuation\+\_\+values\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{svea__arduino__src_8h_aa5545eb35f187e5fd11a483a265bed7b}{}\label{svea__arduino__src_8h_aa5545eb35f187e5fd11a483a265bed7b}
+
+
+Send settings to the pwm board through \hyperlink{svea__arduino__src_8ino_adab070eb39b45b4c79b5d7e3cafa9514}{set\+\_\+pwm\+\_\+driver()} 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{svea__arduino__src_8ino_adab070eb39b45b4c79b5d7e3cafa9514}{set\+\_\+pwm\+\_\+driver} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em actuation\+\_\+values} & array containg 5 values. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 41 of file svea\+\_\+arduino\+\_\+src.\+ino.
+
+\index{svea\+\_\+arduino\+\_\+src.\+h@{svea\+\_\+arduino\+\_\+src.\+h}!cb\+\_\+ctrl\+\_\+request@{cb\+\_\+ctrl\+\_\+request}}
+\index{cb\+\_\+ctrl\+\_\+request@{cb\+\_\+ctrl\+\_\+request}!svea\+\_\+arduino\+\_\+src.\+h@{svea\+\_\+arduino\+\_\+src.\+h}}
+\subsubsection[{\texorpdfstring{cb\+\_\+ctrl\+\_\+request(const lli\+\_\+ctrl\+\_\+in \&data)}{cb_ctrl_request(const lli_ctrl_in &data)}}]{\setlength{\rightskip}{0pt plus 5cm}void cb\+\_\+ctrl\+\_\+request (
+\begin{DoxyParamCaption}
+\item[{const {\bf lli\+\_\+ctrl\+\_\+in} \&}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{svea__arduino__src_8h_ae79b6def446edd5a233efe74bc1f2a7b}{}\label{svea__arduino__src_8h_ae79b6def446edd5a233efe74bc1f2a7b}
+
+
+Callback function for control requests from R\+OS Interprets the message and sends the values to the pwm board through \hyperlink{svea__arduino__src_8ino_aa5545eb35f187e5fd11a483a265bed7b}{actuate()}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Message to be evaluated \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 94 of file svea\+\_\+arduino\+\_\+src.\+ino.
+
+\index{svea\+\_\+arduino\+\_\+src.\+h@{svea\+\_\+arduino\+\_\+src.\+h}!process\+Encoder\+Ticks@{process\+Encoder\+Ticks}}
+\index{process\+Encoder\+Ticks@{process\+Encoder\+Ticks}!svea\+\_\+arduino\+\_\+src.\+h@{svea\+\_\+arduino\+\_\+src.\+h}}
+\subsubsection[{\texorpdfstring{process\+Encoder\+Ticks()}{processEncoderTicks()}}]{\setlength{\rightskip}{0pt plus 5cm}void process\+Encoder\+Ticks (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{svea__arduino__src_8h_a11eacef653351913656e56d12c152346}{}\label{svea__arduino__src_8h_a11eacef653351913656e56d12c152346}
+
+
+Count the encoder ticks since last call and send the result to R\+OS. 
+
+The time\+\_\+delta is given in 10 micro seconds resolution. 
+
+Definition at line 331 of file svea\+\_\+arduino\+\_\+src.\+ino.
+
+\index{svea\+\_\+arduino\+\_\+src.\+h@{svea\+\_\+arduino\+\_\+src.\+h}!process\+Pwm@{process\+Pwm}}
+\index{process\+Pwm@{process\+Pwm}!svea\+\_\+arduino\+\_\+src.\+h@{svea\+\_\+arduino\+\_\+src.\+h}}
+\subsubsection[{\texorpdfstring{process\+Pwm()}{processPwm()}}]{\setlength{\rightskip}{0pt plus 5cm}void process\+Pwm (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{svea__arduino__src_8h_af99fa97e441e842b197dacc4a1a95a99}{}\label{svea__arduino__src_8h_af99fa97e441e842b197dacc4a1a95a99}
+
+
+Handle pwm events. 
+
+Reads all the values from \hyperlink{group__PwmMeasurtement_ga1980b7b5ba1ceabb0b5c60c9da70164e}{P\+W\+M\+\_\+\+T\+\_\+\+B\+U\+F\+F\+ER} and \hyperlink{group__PwmMeasurtement_gaed4f8ecf3e1ca2d8bfa8904a43729f57}{P\+W\+M\+\_\+\+S\+\_\+\+B\+U\+F\+F\+ER} that has been added since the last loop and translates the pwm signal to actuation values. Calls \hyperlink{svea__arduino__src_8ino_a2948125fe6592c36c5c0e641478e2db0}{pwm\+Event()} 3 ms after the last observed rising edge.
+
+Button value directions\+: Ctrl / Value Throttle pulled -\/$>$ Possitve value Steering forward -\/$>$ Possitive value Gear switch up -\/$>$ 0 (Low gear) Gear switch down -\/$>$ 1 (High Gear) Switch back -\/$>$ forward diff 0 (unlocked), back diff 0 (unlocked) Switch middle -\/$>$ forward diff 1 (locked), back diff 0 (unlocked) Switch middle -\/$>$ forward diff 1 (locked), back diff 1 (locked) and R\+E\+M\+\_\+\+O\+V\+E\+R\+R\+I\+DE = true 
+
+Definition at line 140 of file svea\+\_\+arduino\+\_\+src.\+ino.
+
+\index{svea\+\_\+arduino\+\_\+src.\+h@{svea\+\_\+arduino\+\_\+src.\+h}!pwm\+\_\+to\+\_\+actuation@{pwm\+\_\+to\+\_\+actuation}}
+\index{pwm\+\_\+to\+\_\+actuation@{pwm\+\_\+to\+\_\+actuation}!svea\+\_\+arduino\+\_\+src.\+h@{svea\+\_\+arduino\+\_\+src.\+h}}
+\subsubsection[{\texorpdfstring{pwm\+\_\+to\+\_\+actuation(unsigned long duration)}{pwm_to_actuation(unsigned long duration)}}]{\setlength{\rightskip}{0pt plus 5cm}int8\+\_\+t pwm\+\_\+to\+\_\+actuation (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{duration}
+\end{DoxyParamCaption}
+)}\hypertarget{svea__arduino__src_8h_a1c4a5154127fe3f9963eb968b0714b90}{}\label{svea__arduino__src_8h_a1c4a5154127fe3f9963eb968b0714b90}
+Convert a pwm duration to an actuation value Usese measurements of pin 10 on the pwm board. \begin{DoxySeeAlso}{See also}
+\hyperlink{svea__arduino__src_8ino_ab3d64504be0ebfe1754aec5485ddbb72}{tune\+\_\+pwm\+\_\+freq()} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em duration} & Duration of the high part of the pwm signal in micro seconds. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 266 of file svea\+\_\+arduino\+\_\+src.\+ino.
+
+\index{svea\+\_\+arduino\+\_\+src.\+h@{svea\+\_\+arduino\+\_\+src.\+h}!set\+\_\+pwm\+\_\+driver@{set\+\_\+pwm\+\_\+driver}}
+\index{set\+\_\+pwm\+\_\+driver@{set\+\_\+pwm\+\_\+driver}!svea\+\_\+arduino\+\_\+src.\+h@{svea\+\_\+arduino\+\_\+src.\+h}}
+\subsubsection[{\texorpdfstring{set\+\_\+pwm\+\_\+driver(uint8\+\_\+t channel, int8\+\_\+t in\+\_\+value)}{set_pwm_driver(uint8_t channel, int8_t in_value)}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+\_\+pwm\+\_\+driver (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{channel, }
+\item[{int8\+\_\+t}]{in\+\_\+value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{svea__arduino__src_8h_adab070eb39b45b4c79b5d7e3cafa9514}{}\label{svea__arduino__src_8h_adab070eb39b45b4c79b5d7e3cafa9514}
+
+
+Set actuation P\+WM convert a 8 bit actuation value to a pwm signal and send it to the pwm board. The value gets scaled to a duration that suits the servos (approximately 1 to 2 milli seconds). The scalling uses frequency measurements from pin 10 on the pwm board. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__ActuationToOutput_ga8e7323c31db382601e81947c2bba345b}{I\+N\+P\+U\+T\+\_\+\+S\+C\+A\+LE} 
+
+\hyperlink{group__ActuationToOutput_gaa6aecad7bb848a436df0b7c89aa1f48f}{P\+W\+M\+\_\+\+N\+E\+U\+T\+R\+A\+L\+\_\+\+T\+I\+CK} To avoid servo jitter at neutral a small dead zone exists around 0. 
+
+\hyperlink{settings_8h_a8f059a42c098816d4ccebaf48add0a4a}{D\+E\+A\+D\+\_\+\+Z\+O\+NE} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel (pin) of the pwm board to send to. \\
+\hline
+{\em in\+\_\+value} & Value, between -\/127 and 127. to send. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 27 of file svea\+\_\+arduino\+\_\+src.\+ino.
+
+
+
+\subsection{Variable Documentation}
+\index{svea\+\_\+arduino\+\_\+src.\+h@{svea\+\_\+arduino\+\_\+src.\+h}!P\+W\+M\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+M\+E\+A\+S\+U\+R\+ED@{P\+W\+M\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+M\+E\+A\+S\+U\+R\+ED}}
+\index{P\+W\+M\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+M\+E\+A\+S\+U\+R\+ED@{P\+W\+M\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+M\+E\+A\+S\+U\+R\+ED}!svea\+\_\+arduino\+\_\+src.\+h@{svea\+\_\+arduino\+\_\+src.\+h}}
+\subsubsection[{\texorpdfstring{P\+W\+M\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+M\+E\+A\+S\+U\+R\+ED}{PWM_INTERVAL_MEASURED}}]{\setlength{\rightskip}{0pt plus 5cm}volatile long P\+W\+M\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\+\_\+\+M\+E\+A\+S\+U\+R\+ED = 0}\hypertarget{svea__arduino__src_8h_a313a0dafc729c2dbc7cbaf993c734f56}{}\label{svea__arduino__src_8h_a313a0dafc729c2dbc7cbaf993c734f56}
+
+
+Duration between rising edges of the signal from the pwm board. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{svea__arduino__src_8h_a1c4a5154127fe3f9963eb968b0714b90}{pwm\+\_\+to\+\_\+actuation()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 144 of file svea\+\_\+arduino\+\_\+src.\+h.
+
+\index{svea\+\_\+arduino\+\_\+src.\+h@{svea\+\_\+arduino\+\_\+src.\+h}!S\+W\+\_\+\+T\+I\+M\+E\+O\+UT@{S\+W\+\_\+\+T\+I\+M\+E\+O\+UT}}
+\index{S\+W\+\_\+\+T\+I\+M\+E\+O\+UT@{S\+W\+\_\+\+T\+I\+M\+E\+O\+UT}!svea\+\_\+arduino\+\_\+src.\+h@{svea\+\_\+arduino\+\_\+src.\+h}}
+\subsubsection[{\texorpdfstring{S\+W\+\_\+\+T\+I\+M\+E\+O\+UT}{SW_TIMEOUT}}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned long S\+W\+\_\+\+T\+I\+M\+E\+O\+UT = 200}\hypertarget{svea__arduino__src_8h_acf921afc2a46077d6d48fc80b38f44e9}{}\label{svea__arduino__src_8h_acf921afc2a46077d6d48fc80b38f44e9}
+Duration (ms) from last recieved computer message when the computer will count as idle 
+
+Definition at line 101 of file svea\+\_\+arduino\+\_\+src.\+h.
+

@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- parameters -->
+    <arg name="vehicle_name" default="SVEA3"/>
+    <arg name="map_file" default="$(find svea)/src/scripts/maps/floor2.simplemap" />
+    <arg name="path_radius" default="0.35"/>
+    <arg name="geofence_radius" default="2"/>  
+    <arg name='speed_limit' default="1.5"/> 
+    <!-- <arg name='speed_limit' default="1.2"/> -->
+    <arg name='gear' default="1"/>
+    <arg name='look_ahead' default="0.2"/>
+    <arg name='target_laps' default="15"/>
+    <arg name='front_differentials' default="0"/>
+    <arg name='rear_differentials' default="0"/>
+
+
+    <!-- get map -->
+    <node pkg="mrpt_map" type="map_server_node" name="map_server_node" output="screen">
+        <param name="debug" value="false"/>
+        <param name="frame_id" value="map"/>
+        <param name="frequency" value="1"/>
+        <param name="ini_file" value="$(find svea_sensors)/params/mrpt/pf_localization.ini"/>
+        <param name="map_file" value="$(arg map_file)"/>
+    </node>
+
+    <!-- Initialize the sensors -->
+    <include file="$(find svea_sensors)/launch/localize.launch" />
+
+    <!-- Initialize low level control connection -->
+    <node pkg="rosserial_python" type="serial_node.py" name="serial_node">
+        <param name="port" value="/dev/arduinoPWM"/>
+        <param name ="baud" value="250000" />
+        <remap from="/lli/ctrl_request" to="/SVEA3/lli/ctrl_request" />
+        <remap from="/lli/ctrl_actuated" to="/SVEA3/lli/ctrl_actuated" />
+    </node>
+
+    <!-- Emergency breaking node -->
+    <node pkg="svea" type="emergency_brake.py" name="emergency_brake" output="screen">
+        <param name="vehicle_name" value="$(arg vehicle_name)"/>
+    </node>
+
+    <!-- Transform to map -->
+        <node pkg="svea" type="transform_to_map.py" name="transform_to_map" output="screen">
+    </node>
+
+
+    <node pkg="svea" type="floor2_donut_real.py" name="floor2_donut" output="screen">
+        <param name="vehicle_name" value="$(arg vehicle_name)"/>
+        <param name="path_radius" value="$(arg path_radius)"/>
+        <param name='speed_limit' value='$(arg speed_limit)'/>
+        <param name='gear' value='$(arg gear)'/>
+        <param name='look_ahead' value='$(arg look_ahead)'/>
+        <param name='target_laps' value='$(arg target_laps)'/>
+        <param name='front_differentials' value='$(arg front_differentials)'/>
+        <param name='rear_differentials' value='$(arg rear_differentials)'/>
+        <param name='geofence_radius' value='$(arg geofence_radius)'/>
+
+    </node>
+
+</launch>

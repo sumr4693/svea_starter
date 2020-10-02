@@ -1,0 +1,47 @@
+\hypertarget{group__MsgBitPositions}{}\section{Bit positions used for the trans\+\_\+diff\+\_\+ctrl field in messages}
+\label{group__MsgBitPositions}\index{Bit positions used for the trans\+\_\+diff\+\_\+ctrl field in messages@{Bit positions used for the trans\+\_\+diff\+\_\+ctrl field in messages}}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \hyperlink{group__MsgBitPositions_ga34eaead62b770ea48065591164ec9e29}{G\+E\+A\+R\+\_\+\+B\+IT} = 0\hypertarget{group__MsgBitPositions_ga34eaead62b770ea48065591164ec9e29}{}\label{group__MsgBitPositions_ga34eaead62b770ea48065591164ec9e29}
+
+\begin{DoxyCompactList}\small\item\em Bit used for gear value (0 unlocked, 1 locked) \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__MsgBitPositions_ga9b82b2c57fd205efb6f330b75d48c8dc}{F\+D\+I\+F\+F\+\_\+\+B\+IT} = 1\hypertarget{group__MsgBitPositions_ga9b82b2c57fd205efb6f330b75d48c8dc}{}\label{group__MsgBitPositions_ga9b82b2c57fd205efb6f330b75d48c8dc}
+
+\begin{DoxyCompactList}\small\item\em Bit used for front differential value (0 unlocked, 1 locked) \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__MsgBitPositions_ga4f5aa3ea23a63189068319996dc40fc5}{R\+D\+I\+F\+F\+\_\+\+B\+IT} = 2
+\item 
+const uint8\+\_\+t \hyperlink{group__MsgBitPositions_ga72cf872102541424c2048e61e50c0709}{A\+C\+T\+\_\+\+B\+I\+TS} \mbox{[}3\mbox{]} = \{\hyperlink{group__MsgBitPositions_ga34eaead62b770ea48065591164ec9e29}{G\+E\+A\+R\+\_\+\+B\+IT}, \hyperlink{group__MsgBitPositions_ga9b82b2c57fd205efb6f330b75d48c8dc}{F\+D\+I\+F\+F\+\_\+\+B\+IT}, \hyperlink{group__MsgBitPositions_ga4f5aa3ea23a63189068319996dc40fc5}{R\+D\+I\+F\+F\+\_\+\+B\+IT}\}\hypertarget{group__MsgBitPositions_ga72cf872102541424c2048e61e50c0709}{}\label{group__MsgBitPositions_ga72cf872102541424c2048e61e50c0709}
+
+\begin{DoxyCompactList}\small\item\em Vector with the bit postitions in msg.\+gear\+\_\+diff in order\+: gear, front diff, rear diff. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__MsgBitPositions_ga9f523412ec86e2d7c6ecd3c1a49a2d9b}{E\+N\+A\+B\+L\+E\+\_\+\+G\+E\+A\+R\+C\+H\+A\+N\+G\+E\+\_\+\+B\+IT} = 3\hypertarget{group__MsgBitPositions_ga9f523412ec86e2d7c6ecd3c1a49a2d9b}{}\label{group__MsgBitPositions_ga9f523412ec86e2d7c6ecd3c1a49a2d9b}
+
+\begin{DoxyCompactList}\small\item\em Bit indicating if the G\+E\+A\+R\+\_\+\+B\+IT value should be read from incoming messages. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__MsgBitPositions_ga62390c182ca2894e4370302b2ee56ed9}{E\+N\+A\+B\+L\+E\+\_\+\+F\+D\+I\+F\+C\+H\+A\+N\+G\+E\+\_\+\+B\+IT} = 4\hypertarget{group__MsgBitPositions_ga62390c182ca2894e4370302b2ee56ed9}{}\label{group__MsgBitPositions_ga62390c182ca2894e4370302b2ee56ed9}
+
+\begin{DoxyCompactList}\small\item\em Bit indicating if the front differential values should be read from incoming messages. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__MsgBitPositions_gabd2bfd09673f529363f995d6ea7a94fb}{E\+N\+A\+B\+L\+E\+\_\+\+R\+D\+I\+F\+C\+H\+A\+N\+G\+E\+\_\+\+B\+IT} = 5\hypertarget{group__MsgBitPositions_gabd2bfd09673f529363f995d6ea7a94fb}{}\label{group__MsgBitPositions_gabd2bfd09673f529363f995d6ea7a94fb}
+
+\begin{DoxyCompactList}\small\item\em Bit indicating if the rear differential values should be read from incoming messages. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__MsgBitPositions_gafee1df3a4ab5fca7535d372d876036ea}{E\+N\+A\+B\+L\+E\+\_\+\+A\+C\+T\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+B\+I\+TS} \mbox{[}3\mbox{]} = \{\hyperlink{group__MsgBitPositions_ga9f523412ec86e2d7c6ecd3c1a49a2d9b}{E\+N\+A\+B\+L\+E\+\_\+\+G\+E\+A\+R\+C\+H\+A\+N\+G\+E\+\_\+\+B\+IT}, \hyperlink{group__MsgBitPositions_ga62390c182ca2894e4370302b2ee56ed9}{E\+N\+A\+B\+L\+E\+\_\+\+F\+D\+I\+F\+C\+H\+A\+N\+G\+E\+\_\+\+B\+IT}, \hyperlink{group__MsgBitPositions_gabd2bfd09673f529363f995d6ea7a94fb}{E\+N\+A\+B\+L\+E\+\_\+\+R\+D\+I\+F\+C\+H\+A\+N\+G\+E\+\_\+\+B\+IT}\}\hypertarget{group__MsgBitPositions_gafee1df3a4ab5fca7535d372d876036ea}{}\label{group__MsgBitPositions_gafee1df3a4ab5fca7535d372d876036ea}
+
+\begin{DoxyCompactList}\small\item\em Vector with the enable change bits in order\+: gear, front diff, rear diff. \end{DoxyCompactList}\item 
+const int8\+\_\+t \hyperlink{group__MsgBitPositions_ga7e9874545710fd223a9d783f83e11a62}{M\+S\+G\+\_\+\+T\+O\+\_\+\+A\+C\+T\+\_\+\+O\+FF} \mbox{[}3\mbox{]} = \{\hyperlink{group__ActuationToOutput_ga54b4e4d7476d53406564c1e9159df212}{I\+N\+P\+U\+T\+\_\+\+M\+AX}, \hyperlink{group__ActuationToOutput_ga54b4e4d7476d53406564c1e9159df212}{I\+N\+P\+U\+T\+\_\+\+M\+AX}-\/10, \hyperlink{group__ActuationToOutput_ga1f805f05ca679b7b28951bfa6659294d}{I\+N\+P\+U\+T\+\_\+\+M\+IN}+10\}\hypertarget{group__MsgBitPositions_ga7e9874545710fd223a9d783f83e11a62}{}\label{group__MsgBitPositions_ga7e9874545710fd223a9d783f83e11a62}
+
+\begin{DoxyCompactList}\small\item\em Value that should be actuated if the corresponding bit in msg.\+gear\+\_\+diff is not set. \end{DoxyCompactList}\item 
+const int8\+\_\+t \hyperlink{group__MsgBitPositions_gaf2abc78dd02137e1e3c98f381c80efc5}{M\+S\+G\+\_\+\+T\+O\+\_\+\+A\+C\+T\+\_\+\+ON} \mbox{[}3\mbox{]} = \{\hyperlink{group__ActuationToOutput_ga1f805f05ca679b7b28951bfa6659294d}{I\+N\+P\+U\+T\+\_\+\+M\+IN}, \hyperlink{group__ActuationToOutput_ga1f805f05ca679b7b28951bfa6659294d}{I\+N\+P\+U\+T\+\_\+\+M\+IN}+10, \hyperlink{group__ActuationToOutput_ga54b4e4d7476d53406564c1e9159df212}{I\+N\+P\+U\+T\+\_\+\+M\+AX}-\/10\}\hypertarget{group__MsgBitPositions_gaf2abc78dd02137e1e3c98f381c80efc5}{}\label{group__MsgBitPositions_gaf2abc78dd02137e1e3c98f381c80efc5}
+
+\begin{DoxyCompactList}\small\item\em Value that should be actuated if the corresponding bit in msg.\+gear\+\_\+diff is not set. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Variable Documentation}
+\index{Bit positions used for the trans\+\_\+diff\+\_\+ctrl field in messages@{Bit positions used for the trans\+\_\+diff\+\_\+ctrl field in messages}!R\+D\+I\+F\+F\+\_\+\+B\+IT@{R\+D\+I\+F\+F\+\_\+\+B\+IT}}
+\index{R\+D\+I\+F\+F\+\_\+\+B\+IT@{R\+D\+I\+F\+F\+\_\+\+B\+IT}!Bit positions used for the trans\+\_\+diff\+\_\+ctrl field in messages@{Bit positions used for the trans\+\_\+diff\+\_\+ctrl field in messages}}
+\subsubsection[{\texorpdfstring{R\+D\+I\+F\+F\+\_\+\+B\+IT}{RDIFF_BIT}}]{\setlength{\rightskip}{0pt plus 5cm}const uint8\+\_\+t R\+D\+I\+F\+F\+\_\+\+B\+IT = 2}\hypertarget{group__MsgBitPositions_ga4f5aa3ea23a63189068319996dc40fc5}{}\label{group__MsgBitPositions_ga4f5aa3ea23a63189068319996dc40fc5}
+Bit used for rear differential value (0 unlocked, 1 locked) 
+
+Definition at line 118 of file svea\+\_\+arduino\+\_\+src.\+h.
+

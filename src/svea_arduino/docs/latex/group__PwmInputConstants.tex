@@ -1,0 +1,50 @@
+\hypertarget{group__PwmInputConstants}{}\section{P\+WM input constants}
+\label{group__PwmInputConstants}\index{P\+W\+M input constants@{P\+W\+M input constants}}
+Collaboration diagram for P\+WM input constants\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=335pt]{group__PwmInputConstants}
+\end{center}
+\end{figure}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__RecieverPwmPins}{Pins used connected the reciever to the arduino}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \hyperlink{group__PwmInputConstants_gae2449e7e1058591bfbfdc0901c185602}{P\+W\+M\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE} = 8\hypertarget{group__PwmInputConstants_gae2449e7e1058591bfbfdc0901c185602}{}\label{group__PwmInputConstants_gae2449e7e1058591bfbfdc0901c185602}
+
+\begin{DoxyCompactList}\small\item\em P\+WM buffer size, should be a power of 2. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__PwmInputConstants_gafe4b1ae7ffab8edfcd8452cd3fb7bb74}{P\+W\+M\+\_\+\+I\+X\+\_\+\+M\+A\+SK} = \hyperlink{group__PwmInputConstants_gae2449e7e1058591bfbfdc0901c185602}{P\+W\+M\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE} -\/ 1\hypertarget{group__PwmInputConstants_gafe4b1ae7ffab8edfcd8452cd3fb7bb74}{}\label{group__PwmInputConstants_gafe4b1ae7ffab8edfcd8452cd3fb7bb74}
+
+\begin{DoxyCompactList}\small\item\em Modulo mask for buffer. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{group__PwmInputConstants_ga89098a2ff03e736c257b322e78e7c6e3}{P\+I\+N\+\_\+\+M\+A\+SK}
+\begin{DoxyCompactList}\small\item\em Pin mask used for falling edge detection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Pin number are relative pin register B (pin 8...13) 
+
+\subsection{Variable Documentation}
+\index{P\+W\+M input constants@{P\+W\+M input constants}!P\+I\+N\+\_\+\+M\+A\+SK@{P\+I\+N\+\_\+\+M\+A\+SK}}
+\index{P\+I\+N\+\_\+\+M\+A\+SK@{P\+I\+N\+\_\+\+M\+A\+SK}!P\+W\+M input constants@{P\+W\+M input constants}}
+\subsubsection[{\texorpdfstring{P\+I\+N\+\_\+\+M\+A\+SK}{PIN_MASK}}]{\setlength{\rightskip}{0pt plus 5cm}const uint8\+\_\+t P\+I\+N\+\_\+\+M\+A\+SK}\hypertarget{group__PwmInputConstants_ga89098a2ff03e736c257b322e78e7c6e3}{}\label{group__PwmInputConstants_ga89098a2ff03e736c257b322e78e7c6e3}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= bit(\hyperlink{group__RecieverPwmPins_ga2a0f80bf9db172cf17bb4b928e861c50}{STEER\_PIN}) 
+                       | bit(\hyperlink{group__RecieverPwmPins_gafee863b6234dfd9b3a4d97265e4a9a8a}{SPEED\_PIN})
+                       | bit(\hyperlink{group__RecieverPwmPins_gaa1ed2fccc158e7fcb5aab8eb00e39b72}{GEAR\_PIN})
+                       | bit(\hyperlink{group__RecieverPwmPins_ga91432e122cb52e765d68aed43104e478}{FDIFF\_PIN})
+                       | bit(\hyperlink{group__RecieverPwmPins_ga98a9ce3925b9f576ed03843a3c6c1623}{RDIFF\_PIN})
+\end{DoxyCode}
+
+
+Pin mask used for falling edge detection. 
+
+
+
+Definition at line 82 of file svea\+\_\+arduino\+\_\+src.\+h.
+

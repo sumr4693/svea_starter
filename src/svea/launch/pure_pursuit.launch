@@ -1,0 +1,5 @@
+<launch>
+
+    <node pkg="svea" type="sim_SVEA_pure_pursuit.py" name="SVEA_keyteleop" output="screen"/>
+
+</launch>

@@ -1,0 +1,66 @@
+\hypertarget{settings_8h}{}\section{/home/nvidia/starter\+\_\+ws/src/svea\+\_\+starter/src/svea\+\_\+arduino/svea\+\_\+arduino\+\_\+src/settings.h File Reference}
+\label{settings_8h}\index{/home/nvidia/starter\+\_\+ws/src/svea\+\_\+starter/src/svea\+\_\+arduino/svea\+\_\+arduino\+\_\+src/settings.\+h@{/home/nvidia/starter\+\_\+ws/src/svea\+\_\+starter/src/svea\+\_\+arduino/svea\+\_\+arduino\+\_\+src/settings.\+h}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{settings_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const unsigned long \hyperlink{settings_8h_a829aef1874b17a2461fa716392fdab4e}{E\+N\+C\+O\+D\+E\+R\+\_\+\+S\+A\+M\+P\+L\+E\+\_\+\+I\+N\+T\+E\+R\+V\+AL} = 25000\hypertarget{settings_8h_a829aef1874b17a2461fa716392fdab4e}{}\label{settings_8h_a829aef1874b17a2461fa716392fdab4e}
+
+\begin{DoxyCompactList}\small\item\em Sampling interval for the wheel encoders in micro seconds. \end{DoxyCompactList}\item 
+const uint32\+\_\+t \hyperlink{settings_8h_af36c84a19930ad4097e8b14e0b689bee}{S\+E\+R\+I\+A\+L\+\_\+\+B\+A\+U\+D\+\_\+\+R\+A\+TE} = 250000\hypertarget{settings_8h_af36c84a19930ad4097e8b14e0b689bee}{}\label{settings_8h_af36c84a19930ad4097e8b14e0b689bee}
+
+\begin{DoxyCompactList}\small\item\em Baud rate for serial transmisions. \end{DoxyCompactList}\item 
+const uint32\+\_\+t \hyperlink{settings_8h_a95ca7fd95f43bac99d8d90b604cae239}{I2\+C\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY} = 400000\hypertarget{settings_8h_a95ca7fd95f43bac99d8d90b604cae239}{}\label{settings_8h_a95ca7fd95f43bac99d8d90b604cae239}
+
+\begin{DoxyCompactList}\small\item\em Baud rate for i2c transmisions. \end{DoxyCompactList}\item 
+const uint8\+\_\+t \hyperlink{settings_8h_a81d1b4d200caa7d8d9694709e96f1074}{P\+W\+M\+\_\+\+R\+E\+M\+\_\+\+I\+D\+L\+E\+\_\+\+D\+E\+T\+E\+CT} = 200
+\begin{DoxyCompactList}\small\item\em Duration (us) that decides when the remote should register as idle If the registred pwm singal on channel 5 from the reciever is S\+H\+O\+R\+T\+ER than this value (in microseconds), the remote is considered to be disconnected. \end{DoxyCompactList}\item 
+const int8\+\_\+t {\bfseries S\+T\+E\+E\+R\+I\+N\+G\+\_\+\+C\+L\+O\+C\+K\+W\+I\+SE} = 1\hypertarget{settings_8h_abfeeb33d1dc13e229eb6fcf37f85eea8}{}\label{settings_8h_abfeeb33d1dc13e229eb6fcf37f85eea8}
+
+\item 
+const int8\+\_\+t {\bfseries S\+T\+E\+E\+R\+I\+N\+G\+\_\+\+C\+O\+U\+N\+T\+E\+R\+C\+L\+O\+C\+K\+W\+I\+SE} = -\/1\hypertarget{settings_8h_ae3591610cae2ebcf5cac82a1599c8331}{}\label{settings_8h_ae3591610cae2ebcf5cac82a1599c8331}
+
+\item 
+const int8\+\_\+t \hyperlink{settings_8h_aa8271e75d967694eef083d4a879df10f}{S\+T\+E\+E\+R\+I\+N\+G\+\_\+\+D\+I\+R\+E\+C\+T\+I\+ON} = S\+T\+E\+E\+R\+I\+N\+G\+\_\+\+C\+O\+U\+N\+T\+E\+R\+C\+L\+O\+C\+K\+W\+I\+SE\hypertarget{settings_8h_aa8271e75d967694eef083d4a879df10f}{}\label{settings_8h_aa8271e75d967694eef083d4a879df10f}
+
+\begin{DoxyCompactList}\small\item\em Sets the steering direction that is sent and recieved from R\+OS. \end{DoxyCompactList}\item 
+const uint16\+\_\+t \hyperlink{settings_8h_a4a6f8d13a634c4fbb69e18bb905c175c}{G\+E\+A\+R\+\_\+\+T\+I\+M\+E\+\_\+\+L\+I\+M\+IT} = 500\hypertarget{settings_8h_a4a6f8d13a634c4fbb69e18bb905c175c}{}\label{settings_8h_a4a6f8d13a634c4fbb69e18bb905c175c}
+
+\begin{DoxyCompactList}\small\item\em $<$ Minimum duration (ms) between gear changes, not used \end{DoxyCompactList}\item 
+const int8\+\_\+t \hyperlink{settings_8h_a8f059a42c098816d4ccebaf48add0a4a}{D\+E\+A\+D\+\_\+\+Z\+O\+NE} = 2\hypertarget{settings_8h_a8f059a42c098816d4ccebaf48add0a4a}{}\label{settings_8h_a8f059a42c098816d4ccebaf48add0a4a}
+
+\begin{DoxyCompactList}\small\item\em Deadzone (actuation value) for actuation signals. \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+const unsigned long \hyperlink{settings_8h_afd89c92d45b41bbf8a5738ef08258106}{I\+N\+T\+E\+R\+R\+U\+P\+T\+\_\+\+D\+E\+B\+O\+U\+N\+C\+E\+\_\+\+L\+I\+M\+IT} = 2200\hypertarget{settings_8h_afd89c92d45b41bbf8a5738ef08258106}{}\label{settings_8h_afd89c92d45b41bbf8a5738ef08258106}
+
+\begin{DoxyCompactList}\small\item\em Time in micro seconds between the detection of a pwm signal and until the dinformation is sent to R\+OS. \end{DoxyCompactList}\item 
+const unsigned long \hyperlink{settings_8h_a2bc693b7f285edca340c24386beb9762}{P\+W\+M\+\_\+\+L\+O\+W\+\_\+\+L\+I\+M\+IT} = 1006\hypertarget{settings_8h_a2bc693b7f285edca340c24386beb9762}{}\label{settings_8h_a2bc693b7f285edca340c24386beb9762}
+
+\begin{DoxyCompactList}\small\item\em Desired minimum duty cycle for the pwm board (micro seconds) \end{DoxyCompactList}\item 
+const unsigned long \hyperlink{settings_8h_a0d12f57b82a32df273dc950f1e1a81f0}{P\+W\+M\+\_\+\+H\+I\+G\+H\+\_\+\+L\+I\+M\+IT} = 2000\hypertarget{settings_8h_a0d12f57b82a32df273dc950f1e1a81f0}{}\label{settings_8h_a0d12f57b82a32df273dc950f1e1a81f0}
+
+\begin{DoxyCompactList}\small\item\em Desired maximum duty cycle for the pwm board (micro seconds) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\subsection{Variable Documentation}
+\index{settings.\+h@{settings.\+h}!P\+W\+M\+\_\+\+R\+E\+M\+\_\+\+I\+D\+L\+E\+\_\+\+D\+E\+T\+E\+CT@{P\+W\+M\+\_\+\+R\+E\+M\+\_\+\+I\+D\+L\+E\+\_\+\+D\+E\+T\+E\+CT}}
+\index{P\+W\+M\+\_\+\+R\+E\+M\+\_\+\+I\+D\+L\+E\+\_\+\+D\+E\+T\+E\+CT@{P\+W\+M\+\_\+\+R\+E\+M\+\_\+\+I\+D\+L\+E\+\_\+\+D\+E\+T\+E\+CT}!settings.\+h@{settings.\+h}}
+\subsubsection[{\texorpdfstring{P\+W\+M\+\_\+\+R\+E\+M\+\_\+\+I\+D\+L\+E\+\_\+\+D\+E\+T\+E\+CT}{PWM_REM_IDLE_DETECT}}]{\setlength{\rightskip}{0pt plus 5cm}const uint8\+\_\+t P\+W\+M\+\_\+\+R\+E\+M\+\_\+\+I\+D\+L\+E\+\_\+\+D\+E\+T\+E\+CT = 200}\hypertarget{settings_8h_a81d1b4d200caa7d8d9694709e96f1074}{}\label{settings_8h_a81d1b4d200caa7d8d9694709e96f1074}
+
+
+Duration (us) that decides when the remote should register as idle If the registred pwm singal on channel 5 from the reciever is S\+H\+O\+R\+T\+ER than this value (in microseconds), the remote is considered to be disconnected. 
+
+The reciever will still send neutral steering and velocity even if the remote is of, but channel 4 and 5 (used for differentials) turns of completely. When the remote is connected again it will take approxiamtely 7 seconds until the reciever starts sending on channel 5 again, and the remote can be used again. 
+
+Definition at line 20 of file settings.\+h.
+

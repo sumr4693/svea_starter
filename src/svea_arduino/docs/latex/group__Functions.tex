@@ -1,0 +1,161 @@
+\hypertarget{group__Functions}{}\section{Functions and subroutines}
+\label{group__Functions}\index{Functions and subroutines@{Functions and subroutines}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__Functions_gadab070eb39b45b4c79b5d7e3cafa9514}{set\+\_\+pwm\+\_\+driver} (uint8\+\_\+t channel, int8\+\_\+t in\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Set actuation P\+WM convert a 8 bit actuation value to a pwm signal and send it to the pwm board. The value gets scaled to a duration that suits the servos (approximately 1 to 2 milli seconds). The scalling uses frequency measurements from pin 10 on the pwm board. \end{DoxyCompactList}\item 
+void \hyperlink{group__Functions_gaa5545eb35f187e5fd11a483a265bed7b}{actuate} (const int8\+\_\+t actuation\+\_\+values\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Send settings to the pwm board through \hyperlink{group__Functions_gadab070eb39b45b4c79b5d7e3cafa9514}{set\+\_\+pwm\+\_\+driver()} \end{DoxyCompactList}\item 
+uint8\+\_\+t {\bfseries set\+\_\+actuated\+\_\+code} ()\hypertarget{group__Functions_gad7d57085af575cbb5dc21e523f3a3321}{}\label{group__Functions_gad7d57085af575cbb5dc21e523f3a3321}
+
+\item 
+void \hyperlink{group__Functions_ga75bbdc12a150ad66dc004cb30bb5de4f}{cb\+\_\+ctrl\+\_\+request} (const \hyperlink{group__GlobalVariables_ga397644608f772ef60685f6a938f43ea1}{lli\+\_\+ctrl\+\_\+in} data)
+\begin{DoxyCompactList}\small\item\em Callback function for control requests from R\+OS Interprets the message and sends the values to the pwm board through \hyperlink{group__Functions_gaa5545eb35f187e5fd11a483a265bed7b}{actuate()}. \end{DoxyCompactList}\item 
+void \hyperlink{group__Functions_gaf99fa97e441e842b197dacc4a1a95a99}{process\+Pwm} ()
+\begin{DoxyCompactList}\small\item\em Handle pwm events. \end{DoxyCompactList}\item 
+void \hyperlink{group__Functions_ga2948125fe6592c36c5c0e641478e2db0}{pwm\+Event} ()\hypertarget{group__Functions_ga2948125fe6592c36c5c0e641478e2db0}{}\label{group__Functions_ga2948125fe6592c36c5c0e641478e2db0}
+
+\begin{DoxyCompactList}\small\item\em Called when a pwm signal from the remote has been recieved Takes the actuation values from the remote and sends them to R\+OS. The frequency of the R\+OS messages is around 100 Hz, based on the frequency of the reciever. If the computer is not sending any signals or the \hyperlink{group__StatusVariables_gae31e17311163c382d2de940091954419}{R\+E\+M\+\_\+\+O\+V\+E\+R\+R\+I\+DE} flag is set (by pushing the deifferential switch to the formost position) the actuation values will also be sent to the pwm board through \hyperlink{group__Functions_gaa5545eb35f187e5fd11a483a265bed7b}{actuate()}. \end{DoxyCompactList}\item 
+int8\+\_\+t \hyperlink{group__Functions_gaf4fdc44b265856b40c792260af0975f1}{pwm\+\_\+to\+\_\+actuation} (unsigned long duration, int8\+\_\+t last\+\_\+value)
+\item 
+void \hyperlink{group__Functions_gab3d64504be0ebfe1754aec5485ddbb72}{tune\+\_\+pwm\+\_\+freq} ()\hypertarget{group__Functions_gab3d64504be0ebfe1754aec5485ddbb72}{}\label{group__Functions_gab3d64504be0ebfe1754aec5485ddbb72}
+
+\begin{DoxyCompactList}\small\item\em Tune the frequency of the pwm board Measure the frequency from the pwm board on pin 10 and adjust the frequency to match \hyperlink{group__ActuationToOutput_ga1e7ca795ca78a0b20f4fbc06ea505cfb}{P\+W\+M\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY} Will then measure the adjusted value and futher tune \hyperlink{group__ActuationToOutput_gaa6aecad7bb848a436df0b7c89aa1f48f}{P\+W\+M\+\_\+\+N\+E\+U\+T\+R\+A\+L\+\_\+\+T\+I\+CK} and \hyperlink{group__ActuationToOutput_ga8e7323c31db382601e81947c2bba345b}{I\+N\+P\+U\+T\+\_\+\+S\+C\+A\+LE}. If Pin D3 is not connected to pin 10 on the pwm board weirdnes might ensue. \end{DoxyCompactList}\item 
+\hyperlink{group__Functions_gafea150fcd685610cb9f7672fce361e53}{I\+SR} (I\+N\+T0\+\_\+vect)\hypertarget{group__Functions_gafea150fcd685610cb9f7672fce361e53}{}\label{group__Functions_gafea150fcd685610cb9f7672fce361e53}
+
+\begin{DoxyCompactList}\small\item\em Interrupt on D2, for detecting reciever pwm high Called on rising edge of steering The rising edges of all pwm signals from the reciever are synced, so only one start time is necessary. \end{DoxyCompactList}\item 
+{\bfseries I\+SR} (I\+N\+T1\+\_\+vect)\hypertarget{group__Functions_ga22acfb428840c6d9aa212764589cf6c6}{}\label{group__Functions_ga22acfb428840c6d9aa212764589cf6c6}
+
+\item 
+\hyperlink{group__Functions_gaa64c6dce15e9de9105b4ae9533c9a267}{I\+SR} (P\+C\+I\+N\+T0\+\_\+vect)\hypertarget{group__Functions_gaa64c6dce15e9de9105b4ae9533c9a267}{}\label{group__Functions_gaa64c6dce15e9de9105b4ae9533c9a267}
+
+\begin{DoxyCompactList}\small\item\em Detects falling edges from the reciever pwm. Interrupt on pins D8 ... D12 Called on pin change on any reciever channel Store time and the pins that have changed in buffers on falling edges and ignores rising edges. \end{DoxyCompactList}\item 
+void \hyperlink{group__Functions_ga4fc01d736fe50cf5b977f755b675f11d}{setup} ()\hypertarget{group__Functions_ga4fc01d736fe50cf5b977f755b675f11d}{}\label{group__Functions_ga4fc01d736fe50cf5b977f755b675f11d}
+
+\begin{DoxyCompactList}\small\item\em Arduino setup function. \end{DoxyCompactList}\item 
+void \hyperlink{group__Functions_gafe461d27b9c48d5921c00d521181f12f}{loop} ()\hypertarget{group__Functions_gafe461d27b9c48d5921c00d521181f12f}{}\label{group__Functions_gafe461d27b9c48d5921c00d521181f12f}
+
+\begin{DoxyCompactList}\small\item\em Main loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile unsigned long \hyperlink{group__Functions_ga7628f22c0dc6ed71f69c76f81b959382}{A\+D\+J\+\_\+\+L\+A\+S\+T\+\_\+\+R\+E\+C\+I\+E\+V\+ED} = micros()\hypertarget{group__Functions_ga7628f22c0dc6ed71f69c76f81b959382}{}\label{group__Functions_ga7628f22c0dc6ed71f69c76f81b959382}
+
+\begin{DoxyCompactList}\small\item\em Interrupt on D3, measures frequency of the pwm board. Used for tuning the pwm frequency. D3 should be connected to pin 10 on the pwm board. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\index{Functions and subroutines@{Functions and subroutines}!actuate@{actuate}}
+\index{actuate@{actuate}!Functions and subroutines@{Functions and subroutines}}
+\subsubsection[{\texorpdfstring{actuate(const int8\+\_\+t actuation\+\_\+values[])}{actuate(const int8_t actuation_values[])}}]{\setlength{\rightskip}{0pt plus 5cm}void actuate (
+\begin{DoxyParamCaption}
+\item[{const int8\+\_\+t}]{actuation\+\_\+values\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{group__Functions_gaa5545eb35f187e5fd11a483a265bed7b}{}\label{group__Functions_gaa5545eb35f187e5fd11a483a265bed7b}
+
+
+Send settings to the pwm board through \hyperlink{group__Functions_gadab070eb39b45b4c79b5d7e3cafa9514}{set\+\_\+pwm\+\_\+driver()} 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__Functions_gadab070eb39b45b4c79b5d7e3cafa9514}{set\+\_\+pwm\+\_\+driver} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em actuation\+\_\+values} & array conating 5 values. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 42 of file svea\+\_\+arduino\+\_\+src.\+ino.
+
+\index{Functions and subroutines@{Functions and subroutines}!cb\+\_\+ctrl\+\_\+request@{cb\+\_\+ctrl\+\_\+request}}
+\index{cb\+\_\+ctrl\+\_\+request@{cb\+\_\+ctrl\+\_\+request}!Functions and subroutines@{Functions and subroutines}}
+\subsubsection[{\texorpdfstring{cb\+\_\+ctrl\+\_\+request(const lli\+\_\+ctrl\+\_\+in data)}{cb_ctrl_request(const lli_ctrl_in data)}}]{\setlength{\rightskip}{0pt plus 5cm}void cb\+\_\+ctrl\+\_\+request (
+\begin{DoxyParamCaption}
+\item[{const {\bf lli\+\_\+ctrl\+\_\+in}}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{group__Functions_ga75bbdc12a150ad66dc004cb30bb5de4f}{}\label{group__Functions_ga75bbdc12a150ad66dc004cb30bb5de4f}
+
+
+Callback function for control requests from R\+OS Interprets the message and sends the values to the pwm board through \hyperlink{group__Functions_gaa5545eb35f187e5fd11a483a265bed7b}{actuate()}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Message to be evaluated \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 91 of file svea\+\_\+arduino\+\_\+src.\+ino.
+
+\index{Functions and subroutines@{Functions and subroutines}!process\+Pwm@{process\+Pwm}}
+\index{process\+Pwm@{process\+Pwm}!Functions and subroutines@{Functions and subroutines}}
+\subsubsection[{\texorpdfstring{process\+Pwm()}{processPwm()}}]{\setlength{\rightskip}{0pt plus 5cm}void process\+Pwm (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{group__Functions_gaf99fa97e441e842b197dacc4a1a95a99}{}\label{group__Functions_gaf99fa97e441e842b197dacc4a1a95a99}
+
+
+Handle pwm events. 
+
+Reads all the values from \hyperlink{group__PwmBuffers_ga1980b7b5ba1ceabb0b5c60c9da70164e}{P\+W\+M\+\_\+\+T\+\_\+\+B\+U\+F\+F\+ER} and \hyperlink{group__PwmBuffers_gaed4f8ecf3e1ca2d8bfa8904a43729f57}{P\+W\+M\+\_\+\+S\+\_\+\+B\+U\+F\+F\+ER} that has been added since the last loop and translates the pwm signal to actuation values. Calls \hyperlink{group__Functions_ga2948125fe6592c36c5c0e641478e2db0}{pwm\+Event()} 3 ms after the last observed rising edge.
+
+Button value directions\+: Ctrl / Value Throttle pulled -\/$>$ Possitve value Steering forward -\/$>$ Possitive value Gear switch up -\/$>$ 0 (Low gear) Gear switch down -\/$>$ 1 (High Gear) Switch back -\/$>$ forward diff 0 (unlocked), back diff 0 (unlocked) Switch middle -\/$>$ forward diff 1 (locked), back diff 0 (unlocked) Switch middle -\/$>$ forward diff 1 (locked), back diff 1 (locked) and R\+E\+M\+\_\+\+O\+V\+E\+R\+R\+I\+DE = true 
+
+Definition at line 144 of file svea\+\_\+arduino\+\_\+src.\+ino.
+
+\index{Functions and subroutines@{Functions and subroutines}!pwm\+\_\+to\+\_\+actuation@{pwm\+\_\+to\+\_\+actuation}}
+\index{pwm\+\_\+to\+\_\+actuation@{pwm\+\_\+to\+\_\+actuation}!Functions and subroutines@{Functions and subroutines}}
+\subsubsection[{\texorpdfstring{pwm\+\_\+to\+\_\+actuation(unsigned long duration, int8\+\_\+t last\+\_\+value)}{pwm_to_actuation(unsigned long duration, int8_t last_value)}}]{\setlength{\rightskip}{0pt plus 5cm}int8\+\_\+t pwm\+\_\+to\+\_\+actuation (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{duration, }
+\item[{int8\+\_\+t}]{last\+\_\+value}
+\end{DoxyParamCaption}
+)}\hypertarget{group__Functions_gaf4fdc44b265856b40c792260af0975f1}{}\label{group__Functions_gaf4fdc44b265856b40c792260af0975f1}
+Convert a pwm duration to an actuation value Usese measurements of pin 10 on the pwm board. \begin{DoxySeeAlso}{See also}
+\hyperlink{group__Functions_gab3d64504be0ebfe1754aec5485ddbb72}{tune\+\_\+pwm\+\_\+freq()} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em duration} & Duration of the high part of the pwm signal in micro seconds. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 273 of file svea\+\_\+arduino\+\_\+src.\+ino.
+
+\index{Functions and subroutines@{Functions and subroutines}!set\+\_\+pwm\+\_\+driver@{set\+\_\+pwm\+\_\+driver}}
+\index{set\+\_\+pwm\+\_\+driver@{set\+\_\+pwm\+\_\+driver}!Functions and subroutines@{Functions and subroutines}}
+\subsubsection[{\texorpdfstring{set\+\_\+pwm\+\_\+driver(uint8\+\_\+t channel, int8\+\_\+t in\+\_\+value)}{set_pwm_driver(uint8_t channel, int8_t in_value)}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+\_\+pwm\+\_\+driver (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{channel, }
+\item[{int8\+\_\+t}]{in\+\_\+value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{group__Functions_gadab070eb39b45b4c79b5d7e3cafa9514}{}\label{group__Functions_gadab070eb39b45b4c79b5d7e3cafa9514}
+
+
+Set actuation P\+WM convert a 8 bit actuation value to a pwm signal and send it to the pwm board. The value gets scaled to a duration that suits the servos (approximately 1 to 2 milli seconds). The scalling uses frequency measurements from pin 10 on the pwm board. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{group__ActuationToOutput_ga8e7323c31db382601e81947c2bba345b}{I\+N\+P\+U\+T\+\_\+\+S\+C\+A\+LE} 
+
+\hyperlink{group__ActuationToOutput_gaa6aecad7bb848a436df0b7c89aa1f48f}{P\+W\+M\+\_\+\+N\+E\+U\+T\+R\+A\+L\+\_\+\+T\+I\+CK} To avoid servo jitter at neutral a small dead zone exists around 0. 
+
+D\+E\+A\+D\+\_\+\+Z\+O\+NE 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel (pin) of the pwm board to send to. \\
+\hline
+{\em in\+\_\+value} & Value, between -\/127 and 127. to send. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 28 of file svea\+\_\+arduino\+\_\+src.\+ino.
+

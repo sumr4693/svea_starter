@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- simulation parameters -->
+    <arg name="use_rviz" default="true"/>
+
+    <!-- map parameters -->
+    <arg name="map_file" default="$(find svea)/src/scripts/maps/floor2.simplemap" />
+
+    <group if="$(eval use_rviz == true)">
+        <node type="rviz" name="rviz" pkg="rviz" args="-d $(find svea)/src/scripts/rviz/SVEA_indoor_team3.rviz" />
+    </group>
+
+    <node pkg="mrpt_map" type="map_server_node" name="map_server_node" output="screen">
+        <param name="debug" value="false"/>
+        <param name="frame_id" value="map"/>
+        <param name="frequency" value="1"/>
+        <param name="ini_file" value="$(find svea_sensors)/params/mrpt/pf_localization.ini"/>
+        <param name="map_file" value="$(arg map_file)"/>
+    </node>
+
+    <node pkg="svea" type="geofence.py" name="geofence" output="screen">  
+    </node>
+
+</launch>

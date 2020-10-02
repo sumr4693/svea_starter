@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+Launch default odometry and the qualisys localizationj system-->
+
+<launch>
+<!-- Start default odometry -->
+    <include file="$(find svea_sensors)/launch/default_odometry.launch" />        
+    <!-- Qualisys -->
+    <arg name="car_name"  default="SVEA4" />
+    <include file="$(find qualisys)/launch/qualisys.launch" /> 
+    <include file="$(find qualisys)/launch/qualisys_odom.launch">            
+        <arg name="model"           value="$(arg car_name)" />
+    </include>
+</launch>

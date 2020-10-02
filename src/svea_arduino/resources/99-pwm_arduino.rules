@@ -1,0 +1,4 @@
+SUBSYSTEM=="tty"\
+, ATTRS{serial}=="754313433343511002D1"\
+, ATTRS{idVendor}=="2a03"\
+, SYMLINK+="arduinoPWM"

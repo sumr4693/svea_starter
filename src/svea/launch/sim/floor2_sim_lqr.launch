@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- <arg name="start_pt" default= '-9.16926193237, -15.6781167984, 0.8978652, 0'/> -->
+    <arg name="start_pt" default= '-9.1, -15.6, 0.8978652, 0'/>
+
+    <!-- coordinate parameters for the path -->
+    <arg name="coords_param" default= '[[-9.1, -15.6, 0.8978652],
+                                        [10.7, 8.9, 0.897],
+                                        [9.7, 13.1, 2.44],
+                                        [4.8, 11.8, -2.3],
+                                        [-5.4, -0.89, -2.25],
+                                        [-3.6, -7, -0.63]]'/>
+    <arg name="use_rviz" default="true"/>
+    <arg name="vehicle_name" default="SVEA3"/>
+    <arg name="use_matplotlib" default="false"/>
+    <arg name="map_file" default="$(find svea)/src/scripts/maps/floor2.simplemap" />
+
+    <arg name="emergency_distance" default="0.2" />
+    <arg name="speed_limit" default="1" />
+
+
+    <group if="$(eval use_rviz == true)">
+        <node type="rviz" name="rviz" pkg="rviz" args="-d $(find svea)/src/scripts/rviz/SVEA_indoor_team3.rviz" />
+    </group>
+
+    <node pkg="mrpt_map" type="map_server_node" name="map_server_node" output="screen">
+        <param name="debug" value="false"/>
+        <param name="frame_id" value="map"/>
+        <param name="frequency" value="1"/>
+        <param name="ini_file" value="$(find svea_sensors)/params/mrpt/pf_localization.ini"/>
+        <param name="map_file" value="$(arg map_file)"/>
+    </node>
+
+    <node pkg="svea" type="floor2_sim_lqr.py" name="floor2_sim_lqr" output="screen">
+        <param name="start_pt" value="$(arg start_pt)"/>
+        <param name="use_rviz" value="$(arg use_rviz)"/>
+        <param name="use_matplotlib" value="$(arg use_matplotlib)"/>
+        <param name="coords_param" value="$(arg coords_param)"/>
+    </node>
+
+    <!-- Emergency breaking node -->
+    <!-- <node pkg="svea" type="emergency_break.py" name="emergency_break" output="screen">
+        <param name="coords_param" value="/$(arg coords_param)"/>
+        <param name="vehicle_name" value="/$(arg vehicle_name)"/>
+    </node> -->
+
+    <!-- Activate lidar -->
+    <!-- <include file="$(find svea_sensors)/launch/lidar.launch" /> -->
+
+</launch>

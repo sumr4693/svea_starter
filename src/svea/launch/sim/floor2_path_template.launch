@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Name of car -->
+    <arg name="vehicle_name" default="SVEA3"/>
+    <arg name="start_pt" default= '-1.2, 3.24, -2.25, 0'/>
+    <!-- coordinate parameters for the path -->
+    <arg name="coords_param" default= '[[-1.55, 3.77, -2.3],
+                                        [-5.82, -1.19, -2.1],
+                                        [-5.6, -4.28, -0.63],
+                                        [-3.47, -5.93, 0.12],
+                                        [-1.25, -5.37, 0.8978652],
+                                        [0.39, -3.14, 0.8978652],
+                                        [0.48, -0.4, 1.25],
+                                        [1.35, 1.18, 0.8978652],
+                                        [5.23, 3.22, 0.8978652],
+                                        [8.3, 6.25, 0.8978652],
+                                        [10.24, 8.6, 0.94],
+                                        [11.3, 10.48, 1.7],
+                                        [9.77, 12.67, 2.3],
+                                        [6.42, 13.67, -2.3],
+                                        [2.31, 8.2, -2.3]]'/>
+    <arg name="curvature" default="0.82" />
+
+
+    <!-- simulation parameters -->
+    <arg name="use_rviz" default="true"/>
+    <arg name="use_matplotlib" default="false"/>
+
+    <!-- map parameters -->
+    <arg name="map_file" default="$(find svea)/src/scripts/maps/floor2.simplemap" />
+
+    <!-- Speed limit -->
+    <arg name="speed_limit" default="1" />
+
+    <group if="$(eval use_rviz == true)">
+        <node type="rviz" name="rviz" pkg="rviz" args="-d $(find svea)/src/scripts/rviz/SVEA_indoor_team3.rviz" />
+    </group>
+
+    <node pkg="mrpt_map" type="map_server_node" name="map_server_node" output="screen">
+        <param name="debug" value="false"/>
+        <param name="frame_id" value="map"/>
+        <param name="frequency" value="1"/>
+        <param name="ini_file" value="$(find svea_sensors)/params/mrpt/pf_localization.ini"/>
+        <param name="map_file" value="$(arg map_file)"/>
+    </node>
+
+    <node pkg="svea" type="floor2_template.py" name="floor2_template" output="screen">
+        <param name="start_pt" value="$(arg start_pt)"/>
+        <param name="use_rviz" value="$(arg use_rviz)"/>
+        <param name="use_matplotlib" value="$(arg use_matplotlib)"/>
+        <param name="coords_param" value="$(arg coords_param)"/>
+        <param name="curvature" value="$(arg curvature)"/>
+        <param name="speed_limit" value="$(arg speed_limit)"/>
+    </node>
+
+</launch>

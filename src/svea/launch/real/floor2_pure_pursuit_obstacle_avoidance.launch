@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Name of car -->
+    <arg name="vehicle_name" default="SVEA3"/>
+
+    <!-- <arg name="start_pt" default= '-9.16926193237, -15.6781167984, 0.8978652, 0'/> -->
+    <arg name="start_pt" default= '7, 4, 0.8978652, 0'/>
+
+    <!-- coordinate parameters for the path -->
+    <arg name="coords_param" default= '[[-3.96, -8.37, 0.8978652],
+                                        [11, 9.44, 1],
+                                        [9.61, 12.3, 2.44],
+                                        [6.56, 13.37, -2.3],
+                                        [-5.5, -1.6, -2.25],
+                                        [-5.27, -3.68, -0.63],
+                                        [-3.18, -6, -0.63]]'/>
+    <arg name="curvature" default="0.78" />
+
+    <!-- Simulation parameters -->
+    <arg name="use_rviz" default="false"/>
+    <arg name="use_matplotlib" default="false"/>
+
+    <!-- Map parameters -->
+    <arg name="map_file" default="$(find svea)/src/scripts/maps/floor2.simplemap" />
+
+    <!-- Speed limit -->
+    <arg name="speed_limit" default="0.5" />
+
+    <!-- launch rviz -->
+    <group if="$(eval use_rviz == true)">
+        <node type="rviz" name="rviz" pkg="rviz" args="-d $(find svea)/src/scripts/rviz/SVEA_indoor_team3.rviz" />
+    </group>
+
+    <!-- get map -->
+    <node pkg="mrpt_map" type="map_server_node" name="map_server_node" output="screen">
+        <param name="debug" value="false"/>
+        <param name="frame_id" value="map"/>
+        <param name="frequency" value="1"/>
+        <param name="ini_file" value="$(find svea_sensors)/params/mrpt/pf_localization.ini"/>
+        <param name="map_file" value="$(arg map_file)"/>
+    </node>
+
+    <!-- Initialize the sensors -->
+    <include file="$(find svea_sensors)/launch/localize.launch" />
+
+    <!-- Initialize low level control connection -->
+    <node pkg="rosserial_python" type="serial_node.py" name="serial_node">
+        <param name="port" value="/dev/arduinoPWM"/>
+        <param name ="baud" value="250000" />
+        <remap from="/lli/ctrl_request" to="/SVEA3/lli/ctrl_request" />
+        <remap from="/lli/ctrl_actuated" to="/SVEA3/lli/ctrl_actuated" />
+    </node>
+    
+    <!-- Emergency breaking node -->
+    <node pkg="svea" type="emergency_brake.py" name="emergency_brake" output="screen">
+        <param name="vehicle_name" value="$(arg vehicle_name)"/>
+    </node>
+
+    <!-- Transform to map -->
+        <node pkg="svea" type="transform_to_map.py" name="transform_to_map" output="screen">
+    </node>
+
+    <!-- launch pure pursuit on floor 2 -->
+    <node pkg="svea" type="floor2_pure_pursuit_node.py" name="floor2_pure_pursuit_node" output="screen">
+        <param name="coords_param" value="$(arg coords_param)"/>
+        <param name="curvature" value="$(arg curvature)"/>
+        <param name="speed_limit" value="$(arg speed_limit)"/>     
+    </node>
+
+        <!-- obstacle avoidance node-->
+    <node pkg="svea" type="obstacle_avoidance_node.py" name="obstacle_avoidance_node" output="screen">
+        <param name="coords_param" value="$(arg coords_param)"/>
+        <param name="curvature" value="$(arg curvature)"/>
+
+    </node>
+</launch>

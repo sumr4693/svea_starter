@@ -1,0 +1,38 @@
+\hypertarget{group__PwmMeasurtement}{}\section{Reciever pwm duty cycle measurement variables}
+\label{group__PwmMeasurtement}\index{Reciever pwm duty cycle measurement variables@{Reciever pwm duty cycle measurement variables}}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile long \hyperlink{group__PwmMeasurtement_gaeb758acd90cce2a48375254eb9c2d843}{P\+W\+M\+\_\+\+H\+I\+G\+H\+\_\+\+T\+I\+ME}
+\item 
+volatile bool \hyperlink{group__PwmMeasurtement_ga1ca1be2c986a00d6a79e5d7d5ab1313c}{H\+I\+G\+H\+\_\+\+R\+E\+C\+I\+E\+V\+ED} = false\hypertarget{group__PwmMeasurtement_ga1ca1be2c986a00d6a79e5d7d5ab1313c}{}\label{group__PwmMeasurtement_ga1ca1be2c986a00d6a79e5d7d5ab1313c}
+
+\begin{DoxyCompactList}\small\item\em True if a rising edge has been observed since the latest values was sent to R\+OS. \end{DoxyCompactList}\item 
+volatile uint8\+\_\+t \hyperlink{group__PwmMeasurtement_ga3f84f08978073d634ef59d44eba3c32a}{I\+N\+T\+\_\+\+P\+I\+N\+\_\+\+S\+T\+A\+T\+US} = 0\hypertarget{group__PwmMeasurtement_ga3f84f08978073d634ef59d44eba3c32a}{}\label{group__PwmMeasurtement_ga3f84f08978073d634ef59d44eba3c32a}
+
+\begin{DoxyCompactList}\small\item\em Indicates which pins that are still high since the last rising edge. \end{DoxyCompactList}\item 
+volatile unsigned long \hyperlink{group__PwmMeasurtement_ga1980b7b5ba1ceabb0b5c60c9da70164e}{P\+W\+M\+\_\+\+T\+\_\+\+B\+U\+F\+F\+ER} \mbox{[}\hyperlink{group__PwmInputConstants_gae2449e7e1058591bfbfdc0901c185602}{P\+W\+M\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}\mbox{]}\hypertarget{group__PwmMeasurtement_ga1980b7b5ba1ceabb0b5c60c9da70164e}{}\label{group__PwmMeasurtement_ga1980b7b5ba1ceabb0b5c60c9da70164e}
+
+\begin{DoxyCompactList}\small\item\em Falling edge interrupt time buffer. \end{DoxyCompactList}\item 
+volatile uint8\+\_\+t \hyperlink{group__PwmMeasurtement_gaed4f8ecf3e1ca2d8bfa8904a43729f57}{P\+W\+M\+\_\+\+S\+\_\+\+B\+U\+F\+F\+ER} \mbox{[}\hyperlink{group__PwmInputConstants_gae2449e7e1058591bfbfdc0901c185602}{P\+W\+M\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}\mbox{]}\hypertarget{group__PwmMeasurtement_gaed4f8ecf3e1ca2d8bfa8904a43729f57}{}\label{group__PwmMeasurtement_gaed4f8ecf3e1ca2d8bfa8904a43729f57}
+
+\begin{DoxyCompactList}\small\item\em Falling edge interrupt pin readig buffer. \end{DoxyCompactList}\item 
+volatile uint8\+\_\+t \hyperlink{group__PwmMeasurtement_ga240562bcf38322f5e5fe4498c0884a79}{P\+W\+M\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+W\+\_\+\+IX} = 0\hypertarget{group__PwmMeasurtement_ga240562bcf38322f5e5fe4498c0884a79}{}\label{group__PwmMeasurtement_ga240562bcf38322f5e5fe4498c0884a79}
+
+\begin{DoxyCompactList}\small\item\em Pwm buffers read index. \end{DoxyCompactList}\item 
+volatile uint8\+\_\+t \hyperlink{group__PwmMeasurtement_gac0879dcb58dda890aceef95b7f4bc793}{P\+W\+M\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+R\+\_\+\+IX} = 0\hypertarget{group__PwmMeasurtement_gac0879dcb58dda890aceef95b7f4bc793}{}\label{group__PwmMeasurtement_gac0879dcb58dda890aceef95b7f4bc793}
+
+\begin{DoxyCompactList}\small\item\em Pwm buffers write index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Variable Documentation}
+\index{Reciever pwm duty cycle measurement variables@{Reciever pwm duty cycle measurement variables}!P\+W\+M\+\_\+\+H\+I\+G\+H\+\_\+\+T\+I\+ME@{P\+W\+M\+\_\+\+H\+I\+G\+H\+\_\+\+T\+I\+ME}}
+\index{P\+W\+M\+\_\+\+H\+I\+G\+H\+\_\+\+T\+I\+ME@{P\+W\+M\+\_\+\+H\+I\+G\+H\+\_\+\+T\+I\+ME}!Reciever pwm duty cycle measurement variables@{Reciever pwm duty cycle measurement variables}}
+\subsubsection[{\texorpdfstring{P\+W\+M\+\_\+\+H\+I\+G\+H\+\_\+\+T\+I\+ME}{PWM_HIGH_TIME}}]{\setlength{\rightskip}{0pt plus 5cm}volatile long P\+W\+M\+\_\+\+H\+I\+G\+H\+\_\+\+T\+I\+ME}\hypertarget{group__PwmMeasurtement_gaeb758acd90cce2a48375254eb9c2d843}{}\label{group__PwmMeasurtement_gaeb758acd90cce2a48375254eb9c2d843}
+Time of the last rising edge in micro seconds 
+
+Definition at line 164 of file svea\+\_\+arduino\+\_\+src.\+h.
+
